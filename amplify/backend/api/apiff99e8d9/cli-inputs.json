@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "paths": {
+    "/user/save-products": {
+      "name": "/user/save-products",
+      "lambdaFunction": "coolweb2c48fe6d8",
+      "permissions": {
+        "setting": "private",
+        "auth": [
+          "create",
+          "read",
+          "update",
+          "delete"
+        ]
+      }
+    }
+  }
+}

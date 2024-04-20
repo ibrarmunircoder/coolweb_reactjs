@@ -1,0 +1,78 @@
+{
+  "api": {
+    "apiff99e8d9": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "coolweb2c48fe6d8"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
+  "auth": {
+    "coolweb2e403eb1de403eb1d": {
+      "customAuth": false,
+      "dependsOn": [],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyCharacters": [],
+          "passwordPolicyMinLength": 8
+        },
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito"
+    }
+  },
+  "custom": {
+    "customResource611a74ac": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "customCloudformation"
+    }
+  },
+  "function": {
+    "coolweb2c48fe6d8": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_coolweb2c48fe6d8_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "coolweb2c48fe6d8"
+        }
+      ]
+    },
+    "AMPLIFY_function_coolweb2c48fe6d8_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "coolweb2c48fe6d8"
+        }
+      ]
+    }
+  }
+}

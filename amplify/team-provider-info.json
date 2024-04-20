@@ -1,0 +1,33 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-coolweb2-dev-f6ae7-authRole",
+      "UnauthRoleArn": "arn:aws:iam::953370718538:role/amplify-coolweb2-dev-f6ae7-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::953370718538:role/amplify-coolweb2-dev-f6ae7-authRole",
+      "Region": "us-west-1",
+      "DeploymentBucketName": "amplify-coolweb2-dev-f6ae7-deployment",
+      "UnauthRoleName": "amplify-coolweb2-dev-f6ae7-unauthRole",
+      "StackName": "amplify-coolweb2-dev-f6ae7",
+      "StackId": "arn:aws:cloudformation:us-west-1:953370718538:stack/amplify-coolweb2-dev-f6ae7/94f10390-ff00-11ee-b09b-06e9e4959309",
+      "AmplifyAppId": "deqfmsy8tryt9",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-coolweb2-dev-f6ae7-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
+    },
+    "categories": {
+      "auth": {
+        "coolweb2e403eb1de403eb1d": {}
+      },
+      "function": {
+        "coolweb2c48fe6d8": {
+          "deploymentBucketName": "amplify-coolweb2-dev-f6ae7-deployment",
+          "s3Key": "amplify-builds/coolweb2c48fe6d8-434b5a445143762f615a-build.zip"
+        }
+      },
+      "custom": {
+        "customResource611a74ac": {}
+      },
+      "api": {
+        "apiff99e8d9": {}
+      }
+    }
+  }
+}
