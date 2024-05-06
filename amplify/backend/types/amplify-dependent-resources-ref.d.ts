@@ -1,9 +1,21 @@
 export type AmplifyDependentResourcesAttributes = {
+  "analytics": {
+    "coolweb2": {
+      "Id": "string",
+      "Region": "string",
+      "appName": "string"
+    }
+  },
   "api": {
     "apiff99e8d9": {
       "ApiId": "string",
       "ApiName": "string",
       "RootUrl": "string"
+    },
+    "coolweb2": {
+      "GraphQLAPIEndpointOutput": "string",
+      "GraphQLAPIIdOutput": "string",
+      "GraphQLAPIKeyOutput": "string"
     }
   },
   "auth": {
@@ -23,6 +35,19 @@ export type AmplifyDependentResourcesAttributes = {
       "LambdaExecutionRole": "string",
       "LambdaExecutionRoleArn": "string",
       "Name": "string",
+      "Region": "string"
+    },
+    "handleUserListProducts": {
+      "Arn": "string",
+      "LambdaExecutionRole": "string",
+      "LambdaExecutionRoleArn": "string",
+      "Name": "string",
+      "Region": "string"
+    }
+  },
+  "storage": {
+    "s34c6f6601": {
+      "BucketName": "string",
       "Region": "string"
     }
   }

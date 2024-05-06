@@ -1,4 +1,10 @@
 {
+  "analytics": {
+    "coolweb2": {
+      "providerPlugin": "awscloudformation",
+      "service": "Pinpoint"
+    }
+  },
   "api": {
     "apiff99e8d9": {
       "dependsOn": [
@@ -9,10 +15,40 @@
           ],
           "category": "function",
           "resourceName": "coolweb2c48fe6d8"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "handleUserListProducts"
         }
       ],
       "providerPlugin": "awscloudformation",
       "service": "API Gateway"
+    },
+    "coolweb2": {
+      "dependsOn": [],
+      "output": {
+        "authConfig": {
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AWS_IAM"
+            }
+          ],
+          "defaultAuthentication": {
+            "apiKeyConfig": {
+              "apiKeyExpirationDate": "2025-04-23T06:13:39.053Z",
+              "apiKeyExpirationDays": 365,
+              "description": "api key description"
+            },
+            "authenticationType": "API_KEY"
+          }
+        }
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "AppSync"
     }
   },
   "auth": {
@@ -55,6 +91,11 @@
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
+    },
+    "handleUserListProducts": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
     }
   },
   "parameters": {
@@ -73,6 +114,29 @@
           "resourceName": "coolweb2c48fe6d8"
         }
       ]
+    },
+    "AMPLIFY_function_handleUserListProducts_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "handleUserListProducts"
+        }
+      ]
+    },
+    "AMPLIFY_function_handleUserListProducts_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "handleUserListProducts"
+        }
+      ]
+    }
+  },
+  "storage": {
+    "s34c6f6601": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "S3"
     }
   }
 }

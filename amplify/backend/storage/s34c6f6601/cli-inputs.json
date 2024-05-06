@@ -1,0 +1,14 @@
+{
+  "resourceName": "s34c6f6601",
+  "policyUUID": "4c6f6601",
+  "bucketName": "coolweb2a76f49fdccb749caab8de2f64bd201ea",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

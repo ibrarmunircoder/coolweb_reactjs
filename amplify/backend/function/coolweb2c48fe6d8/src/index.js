@@ -62,7 +62,6 @@ const handleUserStoreProducts = async (event) => {
         timestamp: new Date().toISOString(),
       }),
     };
-    console.log(input);
     // Save to DynamoDB
     const command = new PutItemCommand(input);
     await client.send(command);
@@ -73,7 +72,9 @@ const handleUserStoreProducts = async (event) => {
   } catch (error) {
     console.error('Error fetching products:', error);
     console.error('DynamoDB operation error:', error);
-    throw new createError.InternalServerError('Failed to fetch or save data');
+    throw new createError(500, 'Failed to fetch or save data', {
+      expose: true,
+    });
   }
 };
 

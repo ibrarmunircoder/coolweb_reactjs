@@ -13,6 +13,19 @@
           "delete"
         ]
       }
+    },
+    "/user/list-products": {
+      "name": "/user/list-products",
+      "lambdaFunction": "handleUserListProducts",
+      "permissions": {
+        "setting": "private",
+        "auth": [
+          "create",
+          "read",
+          "update",
+          "delete"
+        ]
+      }
     }
   }
 }

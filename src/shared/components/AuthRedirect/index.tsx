@@ -8,5 +8,5 @@ export const AuthRedirect = () => {
   const isAuthenticated = useAuthIsAuthenticatedSelector();
   const user = useAuthUserSelector();
   const isLoggedIn = isAuthenticated && user;
-  return !isLoggedIn ? <Outlet /> : <Navigate to="/" />;
+  return !isLoggedIn ? <Outlet /> : <Navigate to="/add-values" />;
 };

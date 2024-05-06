@@ -46,14 +46,14 @@ export const useAddValuesForm = () => {
       timer: 3000,
     });
     try {
-      const getOperation = post({
+      const postOperation = post({
         apiName: API_NAME,
         path: '/user/save-products',
         options: {
           body: values,
         },
       });
-      const { body } = await getOperation.response;
+      const { body } = await postOperation.response;
       await body.json();
       toast.fire({
         icon: 'success',
