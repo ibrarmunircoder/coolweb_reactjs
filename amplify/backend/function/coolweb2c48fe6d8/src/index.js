@@ -59,6 +59,7 @@ const handleUserStoreProducts = async (event) => {
         user_id: userId, // Use User from the event body directly
         store_name: storeName,
         products: storeProducts,
+        store_url: shopifyUrl,
         timestamp: new Date().toISOString(),
       }),
     };

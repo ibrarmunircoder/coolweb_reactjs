@@ -23,6 +23,14 @@
           ],
           "category": "function",
           "resourceName": "handleUserListProducts"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "handleGenerateAIContent"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -92,6 +100,11 @@
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
+    "handleGenerateAIContent": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "handleUserListProducts": {
       "build": true,
       "providerPlugin": "awscloudformation",
@@ -112,6 +125,30 @@
         {
           "category": "function",
           "resourceName": "coolweb2c48fe6d8"
+        }
+      ]
+    },
+    "AMPLIFY_function_handleGenerateAIContent_anthropicApiKey": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "handleGenerateAIContent"
+        }
+      ]
+    },
+    "AMPLIFY_function_handleGenerateAIContent_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "handleGenerateAIContent"
+        }
+      ]
+    },
+    "AMPLIFY_function_handleGenerateAIContent_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "handleGenerateAIContent"
         }
       ]
     },

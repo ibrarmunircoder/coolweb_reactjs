@@ -19,11 +19,16 @@
       "function": {
         "coolweb2c48fe6d8": {
           "deploymentBucketName": "amplify-coolweb2-dev-f6ae7-deployment",
-          "s3Key": "amplify-builds/coolweb2c48fe6d8-6b464d334833526f5079-build.zip"
+          "s3Key": "amplify-builds/coolweb2c48fe6d8-5961702f506e634b5151-build.zip"
         },
         "handleUserListProducts": {
           "deploymentBucketName": "amplify-coolweb2-dev-f6ae7-deployment",
           "s3Key": "amplify-builds/handleUserListProducts-4d562f75563279377778-build.zip"
+        },
+        "handleGenerateAIContent": {
+          "anthropicApiKey": "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",
+          "deploymentBucketName": "amplify-coolweb2-dev-f6ae7-deployment",
+          "s3Key": "amplify-builds/handleGenerateAIContent-684b4c44744362416350-build.zip"
         }
       },
       "custom": {
