@@ -123,7 +123,7 @@ const Products = () => {
       const modeId = 'anthropic.claude-3-opus-20240229-v1:0';
       const body = {
         anthropic_version: 'bedrock-2023-05-31',
-        max_tokens: 1000,
+        max_tokens: 4000,
         messages: [
           {
             role: 'user',
