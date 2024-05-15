@@ -38,8 +38,9 @@ const Products = () => {
         );
         storeUrlRef.current = response[0].store_url;
         storeNameRef.current = response[0].store_name;
-        setProducts(products?.flat() || []);
-        setTotalRecords(products.length);
+        const allProducts = products?.flat() || [];
+        setProducts(allProducts);
+        setTotalRecords(allProducts.length);
       })
       .catch((error) => {
         console.log(error);
@@ -48,7 +49,6 @@ const Products = () => {
         setIsLoading(false);
       });
   }, []);
-
   const handleNextPage = () => {
     setCurrentPage(currentPage + 1);
   };
