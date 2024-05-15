@@ -1,9 +1,0 @@
-{
-  "lambdaLayers": [],
-  "environmentVariableList": [
-    {
-      "cloudFormationParameterName": "anthropicApiKey",
-      "environmentVariableName": "ANTHROPIC_API_KEY"
-    }
-  ]
-}

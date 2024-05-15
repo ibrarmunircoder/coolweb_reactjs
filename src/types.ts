@@ -1,6 +1,8 @@
 export type Product = {
   handle: string;
   body_html: string;
+  product_type?: string;
+  tags?: string[];
   images: [
     {
       width: number;

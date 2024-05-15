@@ -26,19 +26,6 @@
           "delete"
         ]
       }
-    },
-    "/generate-content": {
-      "name": "/generate-content",
-      "lambdaFunction": "handleGenerateAIContent",
-      "permissions": {
-        "setting": "private",
-        "auth": [
-          "create",
-          "read",
-          "update",
-          "delete"
-        ]
-      }
     }
   }
 }
