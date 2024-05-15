@@ -11,8 +11,5 @@ export const getUserProducts = async () => {
   });
   const { body } = await getOperation.response;
   const response = await body.json();
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
-  const products = response?.map((userStoreRecord) => userStoreRecord.products);
-  return products?.flat() || [];
+  return response;
 };
