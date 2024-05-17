@@ -92,12 +92,14 @@ const Products = () => {
   };
 
   const handleStoreSelect = (store: UserStoresType) => () => {
-    setProducts([]);
-    setSelectedProducts([]);
-    setSearchParams({
-      store: store.store_name,
-      store_url: store.store_url,
-    });
+    if (selectedStore !== store.store_name) {
+      setProducts([]);
+      setSelectedProducts([]);
+      setSearchParams({
+        store: store.store_name,
+        store_url: store.store_url,
+      });
+    }
   };
 
   const handleProductSelect = (id: string) => {
