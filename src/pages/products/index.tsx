@@ -158,6 +158,8 @@ const Products = () => {
     - make sure the landing page links do not have the main url ${selectedStoreUrl}, and instead start with /products to have the full URL from that point. The main domain part is not needed.
     - the image urls can be the full thing
     product information: ${productInfo}
+
+    Please don't add any introduction text or lines before html tags. I only need html tags content.
     `;
     return prompt;
   };
