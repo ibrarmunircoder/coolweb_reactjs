@@ -104,3 +104,111 @@ export const onDeleteUserStores = /* GraphQL */ `subscription OnDeleteUserStores
   APITypes.OnDeleteUserStoresSubscriptionVariables,
   APITypes.OnDeleteUserStoresSubscription
 >;
+export const onCreateProductBlogs = /* GraphQL */ `subscription OnCreateProductBlogs(
+  $filter: ModelSubscriptionProductBlogsFilterInput
+) {
+  onCreateProductBlogs(filter: $filter) {
+    content
+    user_id
+    metadata
+    store_name
+    store_url
+    products {
+      product_id
+      title
+      handle
+      body_html
+      images {
+        id
+        width
+        height
+        src
+        __typename
+      }
+      __typename
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnCreateProductBlogsSubscriptionVariables,
+  APITypes.OnCreateProductBlogsSubscription
+>;
+export const onUpdateProductBlogs = /* GraphQL */ `subscription OnUpdateProductBlogs(
+  $filter: ModelSubscriptionProductBlogsFilterInput
+) {
+  onUpdateProductBlogs(filter: $filter) {
+    content
+    user_id
+    metadata
+    store_name
+    store_url
+    products {
+      product_id
+      title
+      handle
+      body_html
+      images {
+        id
+        width
+        height
+        src
+        __typename
+      }
+      __typename
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnUpdateProductBlogsSubscriptionVariables,
+  APITypes.OnUpdateProductBlogsSubscription
+>;
+export const onDeleteProductBlogs = /* GraphQL */ `subscription OnDeleteProductBlogs(
+  $filter: ModelSubscriptionProductBlogsFilterInput
+) {
+  onDeleteProductBlogs(filter: $filter) {
+    content
+    user_id
+    metadata
+    store_name
+    store_url
+    products {
+      product_id
+      title
+      handle
+      body_html
+      images {
+        id
+        width
+        height
+        src
+        __typename
+      }
+      __typename
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnDeleteProductBlogsSubscriptionVariables,
+  APITypes.OnDeleteProductBlogsSubscription
+>;

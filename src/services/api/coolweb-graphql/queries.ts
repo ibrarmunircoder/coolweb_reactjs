@@ -2,7 +2,36 @@ import {
   customListUserStores,
   customGetUserStoreProducts,
 } from '@/graphql/custom-queries';
+import { getProductBlogs, getUserProductsBlogs } from '@/graphql/queries';
 import { execute } from '@/services/api/coolweb-graphql/api-utils';
+
+export const getProductBlogById = async (id: string) => {
+  const blog = await execute(
+    {
+      statement: getProductBlogs,
+      name: 'getProductBlogs',
+    },
+    {
+      id,
+    }
+  );
+
+  return blog;
+};
+
+export const getUserBlogs = async (userId: string) => {
+  const blogs = await execute(
+    {
+      statement: getUserProductsBlogs,
+      name: 'getUserProductsBlogs',
+    },
+    {
+      user_id: userId,
+    }
+  );
+
+  return blogs.items || [];
+};
 
 export const fetchUserStoreProducts = async (storeName: string) => {
   const response = await execute(

@@ -19,6 +19,28 @@ type UserStores
   products: [Product!]!
 }
 
+type ProductBlogs
+  @model
+  @auth(
+    rules: [
+      { allow: public, operations: [read], provider: iam }
+      { allow: private, operations: [create], provider: iam }
+      {
+        allow: private
+        operations: [create, update, delete, read]
+        provider: userPools
+      }
+    ]
+  ) {
+  content: String!
+  user_id: String!
+    @index(name: "UserProductsBlogs", queryField: "getUserProductsBlogs")
+  metadata: String
+  store_name: String!
+  store_url: String!
+  products: [Product!]!
+}
+
 type Product {
   product_id: String!
   title: String!

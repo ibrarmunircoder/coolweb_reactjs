@@ -44,6 +44,18 @@ export const Navigation = () => {
               Products
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              to="/ai-blogs"
+              className={({ isActive }) =>
+                isActive
+                  ? `text-[#047D95] underline underline-offset-8 decoration-2 font-bold`
+                  : 'text-black font-normal'
+              }
+            >
+              AI Blogs
+            </NavLink>
+          </li>
         </ul>
         <Button onClick={handleSignOut} variation="link">
           Sign out

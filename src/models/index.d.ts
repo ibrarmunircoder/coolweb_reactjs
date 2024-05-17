@@ -1,4 +1,4 @@
-import { ModelInit, MutableModel, __modelMeta__, CompositeIdentifier } from "@aws-amplify/datastore";
+import { ModelInit, MutableModel, __modelMeta__, CompositeIdentifier, ManagedIdentifier } from "@aws-amplify/datastore";
 // @ts-ignore
 import { LazyLoading, LazyLoadingDisabled } from "@aws-amplify/datastore";
 
@@ -68,4 +68,42 @@ export declare type UserStores = LazyLoading extends LazyLoadingDisabled ? Eager
 
 export declare const UserStores: (new (init: ModelInit<UserStores>) => UserStores) & {
   copyOf(source: UserStores, mutator: (draft: MutableModel<UserStores>) => MutableModel<UserStores> | void): UserStores;
+}
+
+type EagerProductBlogs = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<ProductBlogs, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly content: string;
+  readonly user_id: string;
+  readonly metadata?: string | null;
+  readonly store_name: string;
+  readonly store_url: string;
+  readonly products: Product[];
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyProductBlogs = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<ProductBlogs, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly content: string;
+  readonly user_id: string;
+  readonly metadata?: string | null;
+  readonly store_name: string;
+  readonly store_url: string;
+  readonly products: Product[];
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type ProductBlogs = LazyLoading extends LazyLoadingDisabled ? EagerProductBlogs : LazyProductBlogs
+
+export declare const ProductBlogs: (new (init: ModelInit<ProductBlogs>) => ProductBlogs) & {
+  copyOf(source: ProductBlogs, mutator: (draft: MutableModel<ProductBlogs>) => MutableModel<ProductBlogs> | void): ProductBlogs;
 }

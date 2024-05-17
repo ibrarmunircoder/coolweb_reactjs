@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-
 import { UserStores } from '@/API';
 import {
   fetchUserStoreProducts,
@@ -15,6 +14,7 @@ import { Badge, Button, Heading, Pagination } from '@aws-amplify/ui-react';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { ProductListing } from './components/ProductListing';
+import { saveProductBlogContent } from '@/services/api/coolweb-graphql/mutations';
 
 type UserStoresType = Omit<UserStores, 'products'>;
 
@@ -93,6 +93,7 @@ const Products = () => {
 
   const handleStoreSelect = (store: UserStoresType) => () => {
     if (selectedStore !== store.store_name) {
+      setModelResponse('');
       setProducts([]);
       setSelectedProducts([]);
       setSearchParams({
@@ -120,10 +121,14 @@ const Products = () => {
     setSelectedProducts(newSelected);
   };
 
-  const generateProductsPrompt = () => {
-    const filteredProducts = products.filter((product) =>
+  const getSelectedProducts = () => {
+    return products.filter((product) =>
       selectedProducts.includes(product.product_id)
     );
+  };
+
+  const generateProductsPrompt = () => {
+    const filteredProducts = getSelectedProducts();
     let productInfo = '';
     for (const product of filteredProducts) {
       const images_html = product.images
@@ -179,6 +184,13 @@ const Products = () => {
       };
 
       const response = await invokeModelWithStreaming(body, modeId);
+      await saveProductBlogContent({
+        content: response,
+        products: getSelectedProducts(),
+        store_name: selectedStore,
+        store_url: selectedStoreUrl,
+        user_id: user?.userId as string,
+      });
       setModelResponse(response);
     } catch (error) {
       console.error(error);

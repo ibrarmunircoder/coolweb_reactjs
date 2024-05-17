@@ -38,14 +38,11 @@ export const customGetUserStoreProducts =
         width
         height
         src
-        __typename
       }
-        __typename
       }
       _version
       _deleted
       _lastChangedAt
-      __typename
     }
     nextToken
     startedAt

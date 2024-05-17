@@ -1,4 +1,5 @@
 export type Product = {
+  __typename?: string;
   handle: string;
   body_html: string;
   product_type?: string;

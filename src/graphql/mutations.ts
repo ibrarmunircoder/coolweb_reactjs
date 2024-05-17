@@ -107,3 +107,114 @@ export const deleteUserStores = /* GraphQL */ `mutation DeleteUserStores(
   APITypes.DeleteUserStoresMutationVariables,
   APITypes.DeleteUserStoresMutation
 >;
+export const createProductBlogs = /* GraphQL */ `mutation CreateProductBlogs(
+  $input: CreateProductBlogsInput!
+  $condition: ModelProductBlogsConditionInput
+) {
+  createProductBlogs(input: $input, condition: $condition) {
+    content
+    user_id
+    metadata
+    store_name
+    store_url
+    products {
+      product_id
+      title
+      handle
+      body_html
+      images {
+        id
+        width
+        height
+        src
+        __typename
+      }
+      __typename
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.CreateProductBlogsMutationVariables,
+  APITypes.CreateProductBlogsMutation
+>;
+export const updateProductBlogs = /* GraphQL */ `mutation UpdateProductBlogs(
+  $input: UpdateProductBlogsInput!
+  $condition: ModelProductBlogsConditionInput
+) {
+  updateProductBlogs(input: $input, condition: $condition) {
+    content
+    user_id
+    metadata
+    store_name
+    store_url
+    products {
+      product_id
+      title
+      handle
+      body_html
+      images {
+        id
+        width
+        height
+        src
+        __typename
+      }
+      __typename
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.UpdateProductBlogsMutationVariables,
+  APITypes.UpdateProductBlogsMutation
+>;
+export const deleteProductBlogs = /* GraphQL */ `mutation DeleteProductBlogs(
+  $input: DeleteProductBlogsInput!
+  $condition: ModelProductBlogsConditionInput
+) {
+  deleteProductBlogs(input: $input, condition: $condition) {
+    content
+    user_id
+    metadata
+    store_name
+    store_url
+    products {
+      product_id
+      title
+      handle
+      body_html
+      images {
+        id
+        width
+        height
+        src
+        __typename
+      }
+      __typename
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.DeleteProductBlogsMutationVariables,
+  APITypes.DeleteProductBlogsMutation
+>;

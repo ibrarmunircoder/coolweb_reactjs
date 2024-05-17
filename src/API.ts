@@ -128,6 +128,63 @@ export type DeleteUserStoresInput = {
   _version?: number | null,
 };
 
+export type CreateProductBlogsInput = {
+  content: string,
+  user_id: string,
+  metadata?: string | null,
+  store_name: string,
+  store_url: string,
+  products: Array< ProductInput >,
+  id?: string | null,
+  _version?: number | null,
+};
+
+export type ModelProductBlogsConditionInput = {
+  content?: ModelStringInput | null,
+  user_id?: ModelStringInput | null,
+  metadata?: ModelStringInput | null,
+  store_name?: ModelStringInput | null,
+  store_url?: ModelStringInput | null,
+  and?: Array< ModelProductBlogsConditionInput | null > | null,
+  or?: Array< ModelProductBlogsConditionInput | null > | null,
+  not?: ModelProductBlogsConditionInput | null,
+  _deleted?: ModelBooleanInput | null,
+  createdAt?: ModelStringInput | null,
+  updatedAt?: ModelStringInput | null,
+};
+
+export type ProductBlogs = {
+  __typename: "ProductBlogs",
+  content: string,
+  user_id: string,
+  metadata?: string | null,
+  store_name: string,
+  store_url: string,
+  products:  Array<Product >,
+  id: string,
+  createdAt: string,
+  updatedAt: string,
+  _version: number,
+  _deleted?: boolean | null,
+  _lastChangedAt: number,
+};
+
+export type UpdateProductBlogsInput = {
+  content?: string | null,
+  user_id?: string | null,
+  metadata?: string | null,
+  store_name?: string | null,
+  store_url?: string | null,
+  products?: Array< ProductInput > | null,
+  id: string,
+  _version?: number | null,
+};
+
+export type DeleteProductBlogsInput = {
+  id: string,
+  _version?: number | null,
+};
+
 export type ModelStringKeyConditionInput = {
   eq?: string | null,
   le?: string | null,
@@ -179,6 +236,28 @@ export type ModelUserStoresConnection = {
   startedAt?: number | null,
 };
 
+export type ModelProductBlogsFilterInput = {
+  content?: ModelStringInput | null,
+  user_id?: ModelStringInput | null,
+  metadata?: ModelStringInput | null,
+  store_name?: ModelStringInput | null,
+  store_url?: ModelStringInput | null,
+  id?: ModelIDInput | null,
+  createdAt?: ModelStringInput | null,
+  updatedAt?: ModelStringInput | null,
+  and?: Array< ModelProductBlogsFilterInput | null > | null,
+  or?: Array< ModelProductBlogsFilterInput | null > | null,
+  not?: ModelProductBlogsFilterInput | null,
+  _deleted?: ModelBooleanInput | null,
+};
+
+export type ModelProductBlogsConnection = {
+  __typename: "ModelProductBlogsConnection",
+  items:  Array<ProductBlogs | null >,
+  nextToken?: string | null,
+  startedAt?: number | null,
+};
+
 export type ModelSubscriptionUserStoresFilterInput = {
   user_id?: ModelSubscriptionStringInput | null,
   timestamp?: ModelSubscriptionStringInput | null,
@@ -218,6 +297,20 @@ export type ModelSubscriptionIDInput = {
   beginsWith?: string | null,
   in?: Array< string | null > | null,
   notIn?: Array< string | null > | null,
+};
+
+export type ModelSubscriptionProductBlogsFilterInput = {
+  content?: ModelSubscriptionStringInput | null,
+  user_id?: ModelSubscriptionStringInput | null,
+  metadata?: ModelSubscriptionStringInput | null,
+  store_name?: ModelSubscriptionStringInput | null,
+  store_url?: ModelSubscriptionStringInput | null,
+  id?: ModelSubscriptionIDInput | null,
+  createdAt?: ModelSubscriptionStringInput | null,
+  updatedAt?: ModelSubscriptionStringInput | null,
+  and?: Array< ModelSubscriptionProductBlogsFilterInput | null > | null,
+  or?: Array< ModelSubscriptionProductBlogsFilterInput | null > | null,
+  _deleted?: ModelBooleanInput | null,
 };
 
 export type CreateUserStoresMutationVariables = {
@@ -310,6 +403,114 @@ export type DeleteUserStoresMutation = {
         src: string,
       } >,
     } >,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type CreateProductBlogsMutationVariables = {
+  input: CreateProductBlogsInput,
+  condition?: ModelProductBlogsConditionInput | null,
+};
+
+export type CreateProductBlogsMutation = {
+  createProductBlogs?:  {
+    __typename: "ProductBlogs",
+    content: string,
+    user_id: string,
+    metadata?: string | null,
+    store_name: string,
+    store_url: string,
+    products:  Array< {
+      __typename: "Product",
+      product_id: string,
+      title: string,
+      handle: string,
+      body_html?: string | null,
+      images:  Array< {
+        __typename: "ProductImage",
+        id: string,
+        width?: number | null,
+        height?: number | null,
+        src: string,
+      } >,
+    } >,
+    id: string,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type UpdateProductBlogsMutationVariables = {
+  input: UpdateProductBlogsInput,
+  condition?: ModelProductBlogsConditionInput | null,
+};
+
+export type UpdateProductBlogsMutation = {
+  updateProductBlogs?:  {
+    __typename: "ProductBlogs",
+    content: string,
+    user_id: string,
+    metadata?: string | null,
+    store_name: string,
+    store_url: string,
+    products:  Array< {
+      __typename: "Product",
+      product_id: string,
+      title: string,
+      handle: string,
+      body_html?: string | null,
+      images:  Array< {
+        __typename: "ProductImage",
+        id: string,
+        width?: number | null,
+        height?: number | null,
+        src: string,
+      } >,
+    } >,
+    id: string,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type DeleteProductBlogsMutationVariables = {
+  input: DeleteProductBlogsInput,
+  condition?: ModelProductBlogsConditionInput | null,
+};
+
+export type DeleteProductBlogsMutation = {
+  deleteProductBlogs?:  {
+    __typename: "ProductBlogs",
+    content: string,
+    user_id: string,
+    metadata?: string | null,
+    store_name: string,
+    store_url: string,
+    products:  Array< {
+      __typename: "Product",
+      product_id: string,
+      title: string,
+      handle: string,
+      body_html?: string | null,
+      images:  Array< {
+        __typename: "ProductImage",
+        id: string,
+        width?: number | null,
+        height?: number | null,
+        src: string,
+      } >,
+    } >,
+    id: string,
+    createdAt: string,
+    updatedAt: string,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
@@ -447,6 +648,149 @@ export type GetUserStoreProductsQuery = {
   } | null,
 };
 
+export type GetProductBlogsQueryVariables = {
+  id: string,
+};
+
+export type GetProductBlogsQuery = {
+  getProductBlogs?:  {
+    __typename: "ProductBlogs",
+    content: string,
+    user_id: string,
+    metadata?: string | null,
+    store_name: string,
+    store_url: string,
+    products:  Array< {
+      __typename: "Product",
+      product_id: string,
+      title: string,
+      handle: string,
+      body_html?: string | null,
+      images:  Array< {
+        __typename: "ProductImage",
+        id: string,
+        width?: number | null,
+        height?: number | null,
+        src: string,
+      } >,
+    } >,
+    id: string,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type ListProductBlogsQueryVariables = {
+  filter?: ModelProductBlogsFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListProductBlogsQuery = {
+  listProductBlogs?:  {
+    __typename: "ModelProductBlogsConnection",
+    items:  Array< {
+      __typename: "ProductBlogs",
+      content: string,
+      user_id: string,
+      metadata?: string | null,
+      store_name: string,
+      store_url: string,
+      products:  Array< {
+        __typename: "Product",
+        product_id: string,
+        title: string,
+        handle: string,
+        body_html?: string | null,
+      } >,
+      id: string,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type SyncProductBlogsQueryVariables = {
+  filter?: ModelProductBlogsFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  lastSync?: number | null,
+};
+
+export type SyncProductBlogsQuery = {
+  syncProductBlogs?:  {
+    __typename: "ModelProductBlogsConnection",
+    items:  Array< {
+      __typename: "ProductBlogs",
+      content: string,
+      user_id: string,
+      metadata?: string | null,
+      store_name: string,
+      store_url: string,
+      products:  Array< {
+        __typename: "Product",
+        product_id: string,
+        title: string,
+        handle: string,
+        body_html?: string | null,
+      } >,
+      id: string,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type GetUserProductsBlogsQueryVariables = {
+  user_id: string,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelProductBlogsFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type GetUserProductsBlogsQuery = {
+  getUserProductsBlogs?:  {
+    __typename: "ModelProductBlogsConnection",
+    items:  Array< {
+      __typename: "ProductBlogs",
+      content: string,
+      user_id: string,
+      metadata?: string | null,
+      store_name: string,
+      store_url: string,
+      products:  Array< {
+        __typename: "Product",
+        product_id: string,
+        title: string,
+        handle: string,
+        body_html?: string | null,
+      } >,
+      id: string,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
 export type OnCreateUserStoresSubscriptionVariables = {
   filter?: ModelSubscriptionUserStoresFilterInput | null,
 };
@@ -534,6 +878,111 @@ export type OnDeleteUserStoresSubscription = {
         src: string,
       } >,
     } >,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type OnCreateProductBlogsSubscriptionVariables = {
+  filter?: ModelSubscriptionProductBlogsFilterInput | null,
+};
+
+export type OnCreateProductBlogsSubscription = {
+  onCreateProductBlogs?:  {
+    __typename: "ProductBlogs",
+    content: string,
+    user_id: string,
+    metadata?: string | null,
+    store_name: string,
+    store_url: string,
+    products:  Array< {
+      __typename: "Product",
+      product_id: string,
+      title: string,
+      handle: string,
+      body_html?: string | null,
+      images:  Array< {
+        __typename: "ProductImage",
+        id: string,
+        width?: number | null,
+        height?: number | null,
+        src: string,
+      } >,
+    } >,
+    id: string,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type OnUpdateProductBlogsSubscriptionVariables = {
+  filter?: ModelSubscriptionProductBlogsFilterInput | null,
+};
+
+export type OnUpdateProductBlogsSubscription = {
+  onUpdateProductBlogs?:  {
+    __typename: "ProductBlogs",
+    content: string,
+    user_id: string,
+    metadata?: string | null,
+    store_name: string,
+    store_url: string,
+    products:  Array< {
+      __typename: "Product",
+      product_id: string,
+      title: string,
+      handle: string,
+      body_html?: string | null,
+      images:  Array< {
+        __typename: "ProductImage",
+        id: string,
+        width?: number | null,
+        height?: number | null,
+        src: string,
+      } >,
+    } >,
+    id: string,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type OnDeleteProductBlogsSubscriptionVariables = {
+  filter?: ModelSubscriptionProductBlogsFilterInput | null,
+};
+
+export type OnDeleteProductBlogsSubscription = {
+  onDeleteProductBlogs?:  {
+    __typename: "ProductBlogs",
+    content: string,
+    user_id: string,
+    metadata?: string | null,
+    store_name: string,
+    store_url: string,
+    products:  Array< {
+      __typename: "Product",
+      product_id: string,
+      title: string,
+      handle: string,
+      body_html?: string | null,
+      images:  Array< {
+        __typename: "ProductImage",
+        id: string,
+        width?: number | null,
+        height?: number | null,
+        src: string,
+      } >,
+    } >,
+    id: string,
+    createdAt: string,
+    updatedAt: string,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
