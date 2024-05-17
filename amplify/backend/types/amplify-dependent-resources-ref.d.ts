@@ -14,8 +14,7 @@ export type AmplifyDependentResourcesAttributes = {
     },
     "coolweb2": {
       "GraphQLAPIEndpointOutput": "string",
-      "GraphQLAPIIdOutput": "string",
-      "GraphQLAPIKeyOutput": "string"
+      "GraphQLAPIIdOutput": "string"
     }
   },
   "auth": {

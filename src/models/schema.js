@@ -1,52 +1,74 @@
 export const schema = {
     "models": {
-        "Product": {
-            "name": "Product",
+        "UserStores": {
+            "name": "UserStores",
             "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "name": {
-                    "name": "name",
+                "user_id": {
+                    "name": "user_id",
                     "isArray": false,
                     "type": "String",
                     "isRequired": true,
                     "attributes": []
                 },
-                "urlimage": {
-                    "name": "urlimage",
+                "timestamp": {
+                    "name": "timestamp",
                     "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
+                    "type": "AWSDateTime",
+                    "isRequired": true,
                     "attributes": []
                 },
-                "createdAt": {
-                    "name": "createdAt",
+                "store_name": {
+                    "name": "store_name",
                     "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
                 },
-                "updatedAt": {
-                    "name": "updatedAt",
+                "store_url": {
+                    "name": "store_url",
                     "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "products": {
+                    "name": "products",
+                    "isArray": true,
+                    "type": {
+                        "nonModel": "Product"
+                    },
+                    "isRequired": true,
                     "attributes": [],
-                    "isReadOnly": true
+                    "isArrayNullable": false
                 }
             },
             "syncable": true,
-            "pluralName": "Products",
+            "pluralName": "UserStores",
             "attributes": [
                 {
                     "type": "model",
-                    "properties": {}
+                    "properties": {
+                        "timestamps": null
+                    }
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "fields": [
+                            "user_id",
+                            "timestamp"
+                        ]
+                    }
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "UserStoreProducts",
+                        "queryField": "getUserStoreProducts",
+                        "fields": [
+                            "store_name"
+                        ]
+                    }
                 },
                 {
                     "type": "auth",
@@ -55,11 +77,26 @@ export const schema = {
                             {
                                 "allow": "public",
                                 "operations": [
+                                    "read"
+                                ],
+                                "provider": "iam"
+                            },
+                            {
+                                "allow": "private",
+                                "operations": [
+                                    "create"
+                                ],
+                                "provider": "iam"
+                            },
+                            {
+                                "allow": "private",
+                                "operations": [
                                     "create",
                                     "update",
                                     "delete",
                                     "read"
-                                ]
+                                ],
+                                "provider": "userPools"
                             }
                         ]
                     }
@@ -68,7 +105,84 @@ export const schema = {
         }
     },
     "enums": {},
-    "nonModels": {},
+    "nonModels": {
+        "Product": {
+            "name": "Product",
+            "fields": {
+                "product_id": {
+                    "name": "product_id",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "title": {
+                    "name": "title",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "handle": {
+                    "name": "handle",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "body_html": {
+                    "name": "body_html",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "images": {
+                    "name": "images",
+                    "isArray": true,
+                    "type": {
+                        "nonModel": "ProductImage"
+                    },
+                    "isRequired": true,
+                    "attributes": [],
+                    "isArrayNullable": false
+                }
+            }
+        },
+        "ProductImage": {
+            "name": "ProductImage",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "width": {
+                    "name": "width",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "height": {
+                    "name": "height",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "src": {
+                    "name": "src",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                }
+            }
+        }
+    },
     "codegenVersion": "3.4.4",
-    "version": "f1323fa97a44df08468136e84effc9dd"
+    "version": "ac560702e6a5fb12bce6d4a5a5dec1bf"
 };

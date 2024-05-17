@@ -15,6 +15,14 @@
     },
     "s3Key": {
       "Type": "String"
+    },
+    "apicoolweb2GraphQLAPIIdOutput": {
+      "Type": "String",
+      "Default": "apicoolweb2GraphQLAPIIdOutput"
+    },
+    "apicoolweb2GraphQLAPIEndpointOutput": {
+      "Type": "String",
+      "Default": "apicoolweb2GraphQLAPIEndpointOutput"
     }
   },
   "Conditions": {
@@ -69,6 +77,12 @@
             },
             "REGION": {
               "Ref": "AWS::Region"
+            },
+            "API_COOLWEB2_GRAPHQLAPIIDOUTPUT": {
+              "Ref": "apicoolweb2GraphQLAPIIdOutput"
+            },
+            "API_COOLWEB2_GRAPHQLAPIENDPOINTOUTPUT": {
+              "Ref": "apicoolweb2GraphQLAPIEndpointOutput"
             }
           }
         },
@@ -160,20 +174,53 @@
                   }
                 ]
               }
-            },
+            }
+          ]
+        }
+      }
+    },
+    "AmplifyResourcesPolicy": {
+      "DependsOn": [
+        "LambdaExecutionRole"
+      ],
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "amplify-lambda-execution-policy",
+        "Roles": [
+          {
+            "Ref": "LambdaExecutionRole"
+          }
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
             {
               "Effect": "Allow",
               "Action": [
-                "dynamodb:Query",
-                "dynamodb:Scan",
-                "dynamodb:GetItem",
-                "dynamodb:PutItem",
-                "dynamodb:UpdateItem",
-                "dynamodb:DeleteItem"
+                "appsync:GraphQL"
               ],
-              "Resource": {
-                "Fn::Sub": "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/UserStoreProducts-${env}"
-              }
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:aws:appsync:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":apis/",
+                      {
+                        "Ref": "apicoolweb2GraphQLAPIIdOutput"
+                      },
+                      "/types/Mutation/*"
+                    ]
+                  ]
+                }
+              ]
             }
           ]
         }

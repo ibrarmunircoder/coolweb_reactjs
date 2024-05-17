@@ -22,7 +22,7 @@ export const Navigation = () => {
         <ul className="hidden sm:flex items-center gap-4 text-lg">
           <li>
             <NavLink
-              to="/add-values"
+              to="/add-store"
               className={({ isActive }) =>
                 isActive
                   ? `text-[#047D95] underline underline-offset-8 decoration-2 font-bold`

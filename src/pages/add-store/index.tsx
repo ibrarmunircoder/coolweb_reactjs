@@ -12,7 +12,7 @@ const AddFormValues = () => {
       <div className="max-w-2xl mx-auto px-3">
         <div className="py-8">
           <Heading level={3} textAlign="center">
-            Fill the Form
+            Add New Store
           </Heading>
         </div>
         <form className="flex flex-col gap-4" onSubmit={onSubmit}>

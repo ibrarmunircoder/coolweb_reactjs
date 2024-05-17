@@ -7,7 +7,7 @@ const Login = () => {
       <Authenticator>
         {({ user }) => {
           if (user) {
-            window.location.href = '/add-values';
+            window.location.href = '/add-store';
           }
           return <></>;
         }}

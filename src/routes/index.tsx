@@ -15,11 +15,11 @@ import {
 import { withLoading } from 'shared/hocs/WithLoading';
 
 const LoginPage = lazy(() => import('pages/login'));
-const AddFormValuesPage = lazy(() => import('pages/add-values'));
+const AddStorePage = lazy(() => import('pages/add-store'));
 const ProductsPage = lazy(() => import('pages/products'));
 
 const Login = withLoading(LoginPage);
-const AddFormValues = withLoading(AddFormValuesPage);
+const AddStore = withLoading(AddStorePage);
 const Products = withLoading(ProductsPage);
 
 export const Routes = () => {
@@ -38,7 +38,7 @@ export const Routes = () => {
 
         <Route element={<RequireAuth />}>
           <Route element={<AppLayout />}>
-            <Route path="/add-values" element={<AddFormValues />} />
+            <Route path="/add-store" element={<AddStore />} />
             <Route path="/products" element={<Products />} />
           </Route>
         </Route>

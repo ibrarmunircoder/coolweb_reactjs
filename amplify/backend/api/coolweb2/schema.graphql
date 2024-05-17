@@ -1,5 +1,35 @@
-type Product @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  name: String!
-  urlimage: String
-} 
+type UserStores
+  @model(timestamps: null)
+  @auth(
+    rules: [
+      { allow: public, operations: [read], provider: iam }
+      { allow: private, operations: [create], provider: iam }
+      {
+        allow: private
+        operations: [create, update, delete, read]
+        provider: userPools
+      }
+    ]
+  ) {
+  user_id: String! @primaryKey(sortKeyFields: ["timestamp"])
+  timestamp: AWSDateTime!
+  store_name: String!
+    @index(name: "UserStoreProducts", queryField: "getUserStoreProducts")
+  store_url: String!
+  products: [Product!]!
+}
+
+type Product {
+  product_id: String!
+  title: String!
+  handle: String!
+  body_html: String
+  images: [ProductImage!]!
+}
+
+type ProductImage {
+  id: String!
+  width: Int
+  height: Int
+  src: String!
+}

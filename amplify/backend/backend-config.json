@@ -29,7 +29,15 @@
       "service": "API Gateway"
     },
     "coolweb2": {
-      "dependsOn": [],
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "coolweb2e403eb1de403eb1d"
+        }
+      ],
       "output": {
         "authConfig": {
           "additionalAuthenticationProviders": [
@@ -38,12 +46,10 @@
             }
           ],
           "defaultAuthentication": {
-            "apiKeyConfig": {
-              "apiKeyExpirationDate": "2025-04-23T06:13:39.053Z",
-              "apiKeyExpirationDays": 365,
-              "description": "api key description"
-            },
-            "authenticationType": "API_KEY"
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "authcoolweb2e403eb1de403eb1d"
+            }
           }
         }
       },
@@ -79,16 +85,20 @@
       "service": "Cognito"
     }
   },
-  "custom": {
-    "customResource611a74ac": {
-      "dependsOn": [],
-      "providerPlugin": "awscloudformation",
-      "service": "customCloudformation"
-    }
-  },
+  "custom": {},
   "function": {
     "coolweb2c48fe6d8": {
       "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput"
+          ],
+          "category": "api",
+          "resourceName": "coolweb2"
+        }
+      ],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },

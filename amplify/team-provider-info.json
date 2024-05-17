@@ -19,15 +19,12 @@
       "function": {
         "coolweb2c48fe6d8": {
           "deploymentBucketName": "amplify-coolweb2-dev-f6ae7-deployment",
-          "s3Key": "amplify-builds/coolweb2c48fe6d8-5961702f506e634b5151-build.zip"
+          "s3Key": "amplify-builds/coolweb2c48fe6d8-4674726e72334f4f3132-build.zip"
         },
         "handleUserListProducts": {
           "deploymentBucketName": "amplify-coolweb2-dev-f6ae7-deployment",
           "s3Key": "amplify-builds/handleUserListProducts-4d562f75563279377778-build.zip"
         }
-      },
-      "custom": {
-        "customResource611a74ac": {}
       },
       "api": {
         "apiff99e8d9": {},
