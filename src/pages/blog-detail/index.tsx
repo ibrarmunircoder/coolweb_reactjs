@@ -6,8 +6,6 @@ import { invokeModelWithStreaming } from '@/shared/utils/llm';
 import { Button, Heading } from '@aws-amplify/ui-react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 const BlogDetail = () => {
   const [blog, setBlog] = useState<ProductBlogs | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -104,11 +102,17 @@ const BlogDetail = () => {
               Generate metadat
             </Button>
           </div>
-          {blog.metadata && (
-            <SyntaxHighlighter language="json" style={docco}>
-              {blog.metadata}
-            </SyntaxHighlighter>
-          )}
+          {blog.metadata &&
+            Object.keys(JSON.parse(blog.metadata)).map((key) => {
+              return (
+                <div className="p-4 bg-gray-100 rounded-md">
+                  <pre className="break-words whitespace-pre-wrap">
+                    <span className="text-lg font-semibold">{key}: </span>
+                    <span>{JSON.parse(blog.metadata as string)[key]}</span>;
+                  </pre>
+                </div>
+              );
+            })}
         </div>
         <div className="flex flex-col gap-3">
           <Heading level={4} textAlign="left">
