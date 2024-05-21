@@ -148,7 +148,6 @@ const Products = () => {
     Please follow the instructions below to write a blog article for my store ${selectedStore} based on our product information below these instructions.
 
     Instructions:
-    - Do not reply with an introduction line describing your actions about creating a blog post. Only reply with the html as described in these instructions.
     - Generate a blog article with html tags, but not a complete html file with head and body, we only need the html tags wrapped around the content.
     - Include images and links too. Just use the h2, h3, h4, p, links to products, images in html only. Don't include the blog title in the output at the top. Exclude it.
     - Don't mention anything about getting the product now because supplies are limited and may not be available by the time they read this.
@@ -159,6 +158,7 @@ const Products = () => {
     - Make sure the landing page links do not have the main url ${selectedStoreUrl}, and instead start with /products to have the full URL from that point. The main domain part is not needed.
     - The image urls can be the full url.
     product information: ${productInfo}
+    - Do not include any introductory lines before html. you need to only generate blog post using html elements by wrapping the content. For example, "Here is the blog article with HTML tags based on the provided product information:", do not include such kind of lines while generating blog post.
     `;
 
     return prompt;
