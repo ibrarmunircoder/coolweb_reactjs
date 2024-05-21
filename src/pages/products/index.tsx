@@ -145,22 +145,22 @@ const Products = () => {
     }
 
     const prompt = `
-    write a blog article with 1000 word minimum for my store ${selectedStore} based on our product information below these instructions
+    Please follow the instructions below to write a blog article for my store ${selectedStore} based on our product information below these instructions.
 
     Instructions:
-    - generate a blog article with html tags and not a complete html file with head and body, we only need the html tags wrapped around the content. Include images and links too. Just use the h2, h3, h4, p, links, images html only. Don't include the blog title in the output at the top. Exclude it.
-    - Links to the product(s)
-    - don't mention anything about getting the product now because supplies are limited and may not be available by the time they read this.
-    - don't include price, sku or weight or category in the details/specifications.
-    - don't say "view more information" or anything similar since the link pages might not actually have more information.
-    - using the image(s), describe the details of the product(s)
-    - please make sure the image tags have a style added to it of width: 100%;
-    - make sure the landing page links do not have the main url ${selectedStoreUrl}, and instead start with /products to have the full URL from that point. The main domain part is not needed.
-    - the image urls can be the full thing
+    - Do not reply with an introduction line describing your actions about creating a blog post. Only reply with the html as described in these instructions.
+    - Generate a blog article with html tags, but not a complete html file with head and body, we only need the html tags wrapped around the content.
+    - Include images and links too. Just use the h2, h3, h4, p, links to products, images in html only. Don't include the blog title in the output at the top. Exclude it.
+    - Don't mention anything about getting the product now because supplies are limited and may not be available by the time they read this.
+    - Don't include price, sku or weight, category in the details/specifications.
+    - Don't say "view more information" or anything similar since the linked pages might not actually have more information.
+    - Look at the images provided in the product details to describe the details of the product(s).
+    - Make sure the image tags have a style added to it of width: 100%;.
+    - Make sure the landing page links do not have the main url ${selectedStoreUrl}, and instead start with /products to have the full URL from that point. The main domain part is not needed.
+    - The image urls can be the full url.
     product information: ${productInfo}
-
-    Please don't add any introduction text or lines before html tags. I only need html tags content.
     `;
+
     return prompt;
   };
 
