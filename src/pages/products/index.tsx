@@ -157,7 +157,7 @@ const Products = () => {
     - Make sure the image tags have a style added to it of width: 100%;.
     - Make sure the landing page links do not have the main url ${selectedStoreUrl}, and instead start with /products to have the full URL from that point. The main domain part is not needed.
     - The image urls can be the full url.
-    product information: ${productInfo}
+    - The blog post must be 1000 words minimum based on the product information: "${productInfo}"
     - Do not include any introductory lines before html. you need to only generate blog post using html elements by wrapping the content. For example, "Here is the blog article with HTML tags based on the provided product information:", do not include such kind of lines while generating blog post.
     `;
 
