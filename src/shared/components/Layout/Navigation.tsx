@@ -53,7 +53,7 @@ export const Navigation = () => {
                   : 'text-black font-normal'
               }
             >
-              AI Blogs
+              Drafts
             </NavLink>
           </li>
         </ul>

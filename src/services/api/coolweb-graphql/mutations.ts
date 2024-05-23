@@ -1,4 +1,8 @@
-import { createProductBlogs, updateProductBlogs } from '@/graphql/mutations';
+import {
+  createProductBlogs,
+  deleteProductBlogs,
+  updateProductBlogs,
+} from '@/graphql/mutations';
 import { execute } from './api-utils';
 import { CreateProductBlogsInput } from '@/API';
 
@@ -31,6 +35,22 @@ export const saveProductBlogContent = async (
     },
     {
       input,
+    }
+  );
+
+  return response;
+};
+
+export const removeBlogById = async (id: string) => {
+  const response = await execute(
+    {
+      statement: deleteProductBlogs,
+      name: 'deleteProductBlogs',
+    },
+    {
+      input: {
+        id,
+      },
     }
   );
 

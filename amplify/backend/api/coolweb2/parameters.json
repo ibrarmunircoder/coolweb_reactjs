@@ -2,7 +2,6 @@
   "AppSyncApiName": "coolweb2",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
   "DynamoDBEnableServerSideEncryption": false,
-  "AuthModeLastUpdated": "2024-05-17T11:18:10.474Z",
   "AuthCognitoUserPoolId": {
     "Fn::GetAtt": [
       "authcoolweb2e403eb1de403eb1d",

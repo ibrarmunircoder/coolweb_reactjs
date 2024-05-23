@@ -40,12 +40,9 @@ export const customGetUserStoreProducts =
         src
       }
       }
-      _version
-      _deleted
-      _lastChangedAt
+     
     }
     nextToken
-    startedAt
     __typename
   }
 }
@@ -75,14 +72,9 @@ export const customListUserStores = /* GraphQL */ `query CustomListUserStores(
         timestamp
         store_name
         store_url
-       
-        _version
-        _deleted
-        _lastChangedAt
         __typename
       }
       nextToken
-      startedAt
       __typename
     }
   }

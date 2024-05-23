@@ -21,18 +21,8 @@ export const onCreateUserStores = /* GraphQL */ `subscription OnCreateUserStores
       title
       handle
       body_html
-      images {
-        id
-        width
-        height
-        src
-        __typename
-      }
       __typename
     }
-    _version
-    _deleted
-    _lastChangedAt
     __typename
   }
 }
@@ -53,18 +43,8 @@ export const onUpdateUserStores = /* GraphQL */ `subscription OnUpdateUserStores
       title
       handle
       body_html
-      images {
-        id
-        width
-        height
-        src
-        __typename
-      }
       __typename
     }
-    _version
-    _deleted
-    _lastChangedAt
     __typename
   }
 }
@@ -85,18 +65,8 @@ export const onDeleteUserStores = /* GraphQL */ `subscription OnDeleteUserStores
       title
       handle
       body_html
-      images {
-        id
-        width
-        height
-        src
-        __typename
-      }
       __typename
     }
-    _version
-    _deleted
-    _lastChangedAt
     __typename
   }
 }
@@ -118,21 +88,11 @@ export const onCreateProductBlogs = /* GraphQL */ `subscription OnCreateProductB
       title
       handle
       body_html
-      images {
-        id
-        width
-        height
-        src
-        __typename
-      }
       __typename
     }
     id
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     __typename
   }
 }
@@ -154,21 +114,11 @@ export const onUpdateProductBlogs = /* GraphQL */ `subscription OnUpdateProductB
       title
       handle
       body_html
-      images {
-        id
-        width
-        height
-        src
-        __typename
-      }
       __typename
     }
     id
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     __typename
   }
 }
@@ -190,21 +140,11 @@ export const onDeleteProductBlogs = /* GraphQL */ `subscription OnDeleteProductB
       title
       handle
       body_html
-      images {
-        id
-        width
-        height
-        src
-        __typename
-      }
       __typename
     }
     id
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     __typename
   }
 }

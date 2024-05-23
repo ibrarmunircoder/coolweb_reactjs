@@ -1,4 +1,5 @@
 import { ProductBlogs } from '@/API';
+import { removeBlogById } from '@/services/api/coolweb-graphql/mutations';
 import { getUserBlogs } from '@/services/api/coolweb-graphql/queries';
 import { Spinner } from '@/shared/components';
 import { useAuthUserSelector } from '@/shared/hooks/useAuthStore';
@@ -11,6 +12,7 @@ const AIBlogs = () => {
   const user = useAuthUserSelector();
   const [isLoading, setIsLoading] = useState(true);
   const [blogs, setBlogs] = useState<ProductBlogs[]>([]);
+  const [deletingBlogId, setDeletingBlogId] = useState('');
 
   useEffect(() => {
     getUserBlogs(user!.userId)
@@ -25,11 +27,21 @@ const AIBlogs = () => {
       });
   }, [user]);
 
-  console.log(blogs);
-
   if (isLoading) {
     return <Spinner />;
   }
+
+  const handleDeleteBlogPost = (id: string) => async () => {
+    try {
+      setDeletingBlogId(id);
+      await removeBlogById(id);
+      setBlogs((prev) => prev.filter((blog) => blog.id !== id));
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setDeletingBlogId('');
+    }
+  };
 
   if (blogs.length === 0) {
     return (
@@ -60,9 +72,19 @@ const AIBlogs = () => {
                   <Heading level={6}>Store:</Heading>
                   <Badge variation="info">{blog.store_name}</Badge>
                 </div>
-                <Button size="small" variation="warning">
-                  <Link to={`/blog/${blog.id}`}> View Blog</Link>
-                </Button>
+                <div className="flex items-center gap-3">
+                  <Button size="small" variation="warning">
+                    <Link to={`/blog/${blog.id}`}> View Blog</Link>
+                  </Button>
+                  <Button
+                    onClick={handleDeleteBlogPost(blog.id)}
+                    isLoading={blog.id === deletingBlogId}
+                    size="small"
+                    variation="destructive"
+                  >
+                    Delete
+                  </Button>
+                </div>
               </div>
               <pre className="break-words whitespace-pre-wrap">
                 {truncate(blog.content, 300)}

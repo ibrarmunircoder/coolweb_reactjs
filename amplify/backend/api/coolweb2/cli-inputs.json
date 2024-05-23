@@ -7,11 +7,6 @@
       "mode": "AMAZON_COGNITO_USER_POOLS",
       "cognitoUserPoolId": "authcoolweb2e403eb1de403eb1d"
     },
-    "conflictResolution": {
-      "defaultResolutionStrategy": {
-        "type": "AUTOMERGE"
-      }
-    },
     "additionalAuthTypes": [
       {
         "mode": "AWS_IAM"

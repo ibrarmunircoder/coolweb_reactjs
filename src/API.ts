@@ -8,7 +8,6 @@ export type CreateUserStoresInput = {
   store_name: string,
   store_url: string,
   products: Array< ProductInput >,
-  _version?: number | null,
 };
 
 export type ProductInput = {
@@ -32,7 +31,6 @@ export type ModelUserStoresConditionInput = {
   and?: Array< ModelUserStoresConditionInput | null > | null,
   or?: Array< ModelUserStoresConditionInput | null > | null,
   not?: ModelUserStoresConditionInput | null,
-  _deleted?: ModelBooleanInput | null,
   createdAt?: ModelStringInput | null,
   updatedAt?: ModelStringInput | null,
 };
@@ -77,13 +75,6 @@ export type ModelSizeInput = {
   between?: Array< number | null > | null,
 };
 
-export type ModelBooleanInput = {
-  ne?: boolean | null,
-  eq?: boolean | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-};
-
 export type UserStores = {
   __typename: "UserStores",
   user_id: string,
@@ -91,9 +82,6 @@ export type UserStores = {
   store_name: string,
   store_url: string,
   products:  Array<Product >,
-  _version: number,
-  _deleted?: boolean | null,
-  _lastChangedAt: number,
 };
 
 export type Product = {
@@ -119,13 +107,11 @@ export type UpdateUserStoresInput = {
   store_name?: string | null,
   store_url?: string | null,
   products?: Array< ProductInput > | null,
-  _version?: number | null,
 };
 
 export type DeleteUserStoresInput = {
   user_id: string,
   timestamp: string,
-  _version?: number | null,
 };
 
 export type CreateProductBlogsInput = {
@@ -136,7 +122,6 @@ export type CreateProductBlogsInput = {
   store_url: string,
   products: Array< ProductInput >,
   id?: string | null,
-  _version?: number | null,
 };
 
 export type ModelProductBlogsConditionInput = {
@@ -148,7 +133,6 @@ export type ModelProductBlogsConditionInput = {
   and?: Array< ModelProductBlogsConditionInput | null > | null,
   or?: Array< ModelProductBlogsConditionInput | null > | null,
   not?: ModelProductBlogsConditionInput | null,
-  _deleted?: ModelBooleanInput | null,
   createdAt?: ModelStringInput | null,
   updatedAt?: ModelStringInput | null,
 };
@@ -164,9 +148,6 @@ export type ProductBlogs = {
   id: string,
   createdAt: string,
   updatedAt: string,
-  _version: number,
-  _deleted?: boolean | null,
-  _lastChangedAt: number,
 };
 
 export type UpdateProductBlogsInput = {
@@ -177,12 +158,10 @@ export type UpdateProductBlogsInput = {
   store_url?: string | null,
   products?: Array< ProductInput > | null,
   id: string,
-  _version?: number | null,
 };
 
 export type DeleteProductBlogsInput = {
   id: string,
-  _version?: number | null,
 };
 
 export type ModelStringKeyConditionInput = {
@@ -204,7 +183,6 @@ export type ModelUserStoresFilterInput = {
   and?: Array< ModelUserStoresFilterInput | null > | null,
   or?: Array< ModelUserStoresFilterInput | null > | null,
   not?: ModelUserStoresFilterInput | null,
-  _deleted?: ModelBooleanInput | null,
 };
 
 export type ModelIDInput = {
@@ -233,7 +211,6 @@ export type ModelUserStoresConnection = {
   __typename: "ModelUserStoresConnection",
   items:  Array<UserStores | null >,
   nextToken?: string | null,
-  startedAt?: number | null,
 };
 
 export type ModelProductBlogsFilterInput = {
@@ -248,14 +225,12 @@ export type ModelProductBlogsFilterInput = {
   and?: Array< ModelProductBlogsFilterInput | null > | null,
   or?: Array< ModelProductBlogsFilterInput | null > | null,
   not?: ModelProductBlogsFilterInput | null,
-  _deleted?: ModelBooleanInput | null,
 };
 
 export type ModelProductBlogsConnection = {
   __typename: "ModelProductBlogsConnection",
   items:  Array<ProductBlogs | null >,
   nextToken?: string | null,
-  startedAt?: number | null,
 };
 
 export type ModelSubscriptionUserStoresFilterInput = {
@@ -266,7 +241,6 @@ export type ModelSubscriptionUserStoresFilterInput = {
   id?: ModelSubscriptionIDInput | null,
   and?: Array< ModelSubscriptionUserStoresFilterInput | null > | null,
   or?: Array< ModelSubscriptionUserStoresFilterInput | null > | null,
-  _deleted?: ModelBooleanInput | null,
 };
 
 export type ModelSubscriptionStringInput = {
@@ -310,7 +284,6 @@ export type ModelSubscriptionProductBlogsFilterInput = {
   updatedAt?: ModelSubscriptionStringInput | null,
   and?: Array< ModelSubscriptionProductBlogsFilterInput | null > | null,
   or?: Array< ModelSubscriptionProductBlogsFilterInput | null > | null,
-  _deleted?: ModelBooleanInput | null,
 };
 
 export type CreateUserStoresMutationVariables = {
@@ -331,17 +304,7 @@ export type CreateUserStoresMutation = {
       title: string,
       handle: string,
       body_html?: string | null,
-      images:  Array< {
-        __typename: "ProductImage",
-        id: string,
-        width?: number | null,
-        height?: number | null,
-        src: string,
-      } >,
     } >,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -363,17 +326,7 @@ export type UpdateUserStoresMutation = {
       title: string,
       handle: string,
       body_html?: string | null,
-      images:  Array< {
-        __typename: "ProductImage",
-        id: string,
-        width?: number | null,
-        height?: number | null,
-        src: string,
-      } >,
     } >,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -395,17 +348,7 @@ export type DeleteUserStoresMutation = {
       title: string,
       handle: string,
       body_html?: string | null,
-      images:  Array< {
-        __typename: "ProductImage",
-        id: string,
-        width?: number | null,
-        height?: number | null,
-        src: string,
-      } >,
     } >,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -428,20 +371,10 @@ export type CreateProductBlogsMutation = {
       title: string,
       handle: string,
       body_html?: string | null,
-      images:  Array< {
-        __typename: "ProductImage",
-        id: string,
-        width?: number | null,
-        height?: number | null,
-        src: string,
-      } >,
     } >,
     id: string,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -464,20 +397,10 @@ export type UpdateProductBlogsMutation = {
       title: string,
       handle: string,
       body_html?: string | null,
-      images:  Array< {
-        __typename: "ProductImage",
-        id: string,
-        width?: number | null,
-        height?: number | null,
-        src: string,
-      } >,
     } >,
     id: string,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -500,20 +423,10 @@ export type DeleteProductBlogsMutation = {
       title: string,
       handle: string,
       body_html?: string | null,
-      images:  Array< {
-        __typename: "ProductImage",
-        id: string,
-        width?: number | null,
-        height?: number | null,
-        src: string,
-      } >,
     } >,
     id: string,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -535,17 +448,7 @@ export type GetUserStoresQuery = {
       title: string,
       handle: string,
       body_html?: string | null,
-      images:  Array< {
-        __typename: "ProductImage",
-        id: string,
-        width?: number | null,
-        height?: number | null,
-        src: string,
-      } >,
     } >,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -567,51 +470,8 @@ export type ListUserStoresQuery = {
       timestamp: string,
       store_name: string,
       store_url: string,
-      products:  Array< {
-        __typename: "Product",
-        product_id: string,
-        title: string,
-        handle: string,
-        body_html?: string | null,
-      } >,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
     } | null >,
     nextToken?: string | null,
-    startedAt?: number | null,
-  } | null,
-};
-
-export type SyncUserStoresQueryVariables = {
-  filter?: ModelUserStoresFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-  lastSync?: number | null,
-};
-
-export type SyncUserStoresQuery = {
-  syncUserStores?:  {
-    __typename: "ModelUserStoresConnection",
-    items:  Array< {
-      __typename: "UserStores",
-      user_id: string,
-      timestamp: string,
-      store_name: string,
-      store_url: string,
-      products:  Array< {
-        __typename: "Product",
-        product_id: string,
-        title: string,
-        handle: string,
-        body_html?: string | null,
-      } >,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    } | null >,
-    nextToken?: string | null,
-    startedAt?: number | null,
   } | null,
 };
 
@@ -632,19 +492,8 @@ export type GetUserStoreProductsQuery = {
       timestamp: string,
       store_name: string,
       store_url: string,
-      products:  Array< {
-        __typename: "Product",
-        product_id: string,
-        title: string,
-        handle: string,
-        body_html?: string | null,
-      } >,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
     } | null >,
     nextToken?: string | null,
-    startedAt?: number | null,
   } | null,
 };
 
@@ -666,20 +515,10 @@ export type GetProductBlogsQuery = {
       title: string,
       handle: string,
       body_html?: string | null,
-      images:  Array< {
-        __typename: "ProductImage",
-        id: string,
-        width?: number | null,
-        height?: number | null,
-        src: string,
-      } >,
     } >,
     id: string,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -699,58 +538,11 @@ export type ListProductBlogsQuery = {
       metadata?: string | null,
       store_name: string,
       store_url: string,
-      products:  Array< {
-        __typename: "Product",
-        product_id: string,
-        title: string,
-        handle: string,
-        body_html?: string | null,
-      } >,
       id: string,
       createdAt: string,
       updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
     } | null >,
     nextToken?: string | null,
-    startedAt?: number | null,
-  } | null,
-};
-
-export type SyncProductBlogsQueryVariables = {
-  filter?: ModelProductBlogsFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-  lastSync?: number | null,
-};
-
-export type SyncProductBlogsQuery = {
-  syncProductBlogs?:  {
-    __typename: "ModelProductBlogsConnection",
-    items:  Array< {
-      __typename: "ProductBlogs",
-      content: string,
-      user_id: string,
-      metadata?: string | null,
-      store_name: string,
-      store_url: string,
-      products:  Array< {
-        __typename: "Product",
-        product_id: string,
-        title: string,
-        handle: string,
-        body_html?: string | null,
-      } >,
-      id: string,
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    } | null >,
-    nextToken?: string | null,
-    startedAt?: number | null,
   } | null,
 };
 
@@ -772,22 +564,11 @@ export type GetUserProductsBlogsQuery = {
       metadata?: string | null,
       store_name: string,
       store_url: string,
-      products:  Array< {
-        __typename: "Product",
-        product_id: string,
-        title: string,
-        handle: string,
-        body_html?: string | null,
-      } >,
       id: string,
       createdAt: string,
       updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
     } | null >,
     nextToken?: string | null,
-    startedAt?: number | null,
   } | null,
 };
 
@@ -808,17 +589,7 @@ export type OnCreateUserStoresSubscription = {
       title: string,
       handle: string,
       body_html?: string | null,
-      images:  Array< {
-        __typename: "ProductImage",
-        id: string,
-        width?: number | null,
-        height?: number | null,
-        src: string,
-      } >,
     } >,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -839,17 +610,7 @@ export type OnUpdateUserStoresSubscription = {
       title: string,
       handle: string,
       body_html?: string | null,
-      images:  Array< {
-        __typename: "ProductImage",
-        id: string,
-        width?: number | null,
-        height?: number | null,
-        src: string,
-      } >,
     } >,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -870,17 +631,7 @@ export type OnDeleteUserStoresSubscription = {
       title: string,
       handle: string,
       body_html?: string | null,
-      images:  Array< {
-        __typename: "ProductImage",
-        id: string,
-        width?: number | null,
-        height?: number | null,
-        src: string,
-      } >,
     } >,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -902,20 +653,10 @@ export type OnCreateProductBlogsSubscription = {
       title: string,
       handle: string,
       body_html?: string | null,
-      images:  Array< {
-        __typename: "ProductImage",
-        id: string,
-        width?: number | null,
-        height?: number | null,
-        src: string,
-      } >,
     } >,
     id: string,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -937,20 +678,10 @@ export type OnUpdateProductBlogsSubscription = {
       title: string,
       handle: string,
       body_html?: string | null,
-      images:  Array< {
-        __typename: "ProductImage",
-        id: string,
-        width?: number | null,
-        height?: number | null,
-        src: string,
-      } >,
     } >,
     id: string,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -972,19 +703,9 @@ export type OnDeleteProductBlogsSubscription = {
       title: string,
       handle: string,
       body_html?: string | null,
-      images:  Array< {
-        __typename: "ProductImage",
-        id: string,
-        width?: number | null,
-        height?: number | null,
-        src: string,
-      } >,
     } >,
     id: string,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };

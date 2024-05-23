@@ -22,9 +22,7 @@ export const createUserStores = /* GraphQL */ `
         }
         __typename
       }
-      _version
-      _deleted
-      _lastChangedAt
+
       __typename
     }
   }

@@ -10,11 +10,18 @@ import { Spinner, TypeWriter } from '@/shared/components';
 import { useAuthUserSelector } from '@/shared/hooks/useAuthStore';
 import { invokeModelWithStreaming } from '@/shared/utils/llm';
 import { Product } from '@/types';
-import { Badge, Button, Heading, Pagination } from '@aws-amplify/ui-react';
-import { useEffect, useState } from 'react';
+import {
+  Badge,
+  Button,
+  Heading,
+  Pagination,
+  SearchField,
+} from '@aws-amplify/ui-react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { ProductListing } from './components/ProductListing';
 import { saveProductBlogContent } from '@/services/api/coolweb-graphql/mutations';
+import { CancelGenerateContentPrompt } from './components/CancelGenerateContentPrompt';
 
 type UserStoresType = Omit<UserStores, 'products'>;
 
@@ -28,23 +35,24 @@ const Products = () => {
   const [modelResponse, setModelResponse] = useState('');
   const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
-  const [totalRecords, setTotalRecords] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
+  const productsRef = useRef<Product[]>([]);
 
   const recordsPerPage = 10;
-  const totalPages = Math.ceil(totalRecords / recordsPerPage);
+  const totalPages = Math.ceil(products.length / recordsPerPage);
   const lastIndex = currentPage * recordsPerPage;
   const firstIndex = lastIndex - recordsPerPage;
   const chunk = products.slice(firstIndex, lastIndex);
   const selectedStore = searchParams.get('store') || '';
   const selectedStoreUrl = searchParams.get('store') || '';
+
   useEffect(() => {
     if (selectedStore) {
       setIsProductsFetching(true);
       fetchUserStoreProducts(selectedStore)
         .then((products) => {
           setProducts(products);
-          setTotalRecords(products.length);
+          productsRef.current = products;
         })
         .catch((error) => {
           console.log(error);
@@ -201,6 +209,18 @@ const Products = () => {
     }
   };
 
+  const handleProductSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const searchTerm = event.target.value;
+    const filteredProducts = productsRef.current.filter((product) =>
+      product.title.toLowerCase().includes(searchTerm.toLocaleLowerCase())
+    );
+    setProducts(filteredProducts);
+  };
+
+  const handleClearProductSearch = () => {
+    setProducts(productsRef.current);
+  };
+
   if (isLoading) {
     return <Spinner />;
   }
@@ -220,7 +240,7 @@ const Products = () => {
   return (
     <main className="my-14">
       <div className="px-3">
-        <div className="py-8 flex flex-col gap-2 md:flex-row md:justify-between md:items-center">
+        <div className="pt-8 flex flex-col gap-2 md:flex-row md:justify-between md:items-center">
           <div className="flex flex-col">
             <Heading level={3} textAlign="left">
               Products
@@ -255,6 +275,16 @@ const Products = () => {
             </Button>
           )}
         </div>
+        <div className="flex w-full justify-end mt-3 mb-8">
+          <SearchField
+            onChange={handleProductSearch}
+            onClear={handleClearProductSearch}
+            hasSearchButton
+            label="Search"
+            placeholder="Search Products"
+          />
+        </div>
+
         {modelResponse && <TypeWriter content={modelResponse} speed={10} />}
         {isProductsFetching && products.length === 0 && <Spinner />}
         {!isProductsFetching && products.length > 0 && (
@@ -274,7 +304,13 @@ const Products = () => {
             />
           </>
         )}
+        {!isProductsFetching && products.length === 0 && (
+          <div className="my-4 flex justify-center items-center text-lg">
+            No products found!
+          </div>
+        )}
       </div>
+      <CancelGenerateContentPrompt isBlocked={isWaiting} />
     </main>
   );
 };

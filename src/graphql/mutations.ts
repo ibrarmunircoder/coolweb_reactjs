@@ -22,18 +22,8 @@ export const createUserStores = /* GraphQL */ `mutation CreateUserStores(
       title
       handle
       body_html
-      images {
-        id
-        width
-        height
-        src
-        __typename
-      }
       __typename
     }
-    _version
-    _deleted
-    _lastChangedAt
     __typename
   }
 }
@@ -55,18 +45,8 @@ export const updateUserStores = /* GraphQL */ `mutation UpdateUserStores(
       title
       handle
       body_html
-      images {
-        id
-        width
-        height
-        src
-        __typename
-      }
       __typename
     }
-    _version
-    _deleted
-    _lastChangedAt
     __typename
   }
 }
@@ -88,18 +68,8 @@ export const deleteUserStores = /* GraphQL */ `mutation DeleteUserStores(
       title
       handle
       body_html
-      images {
-        id
-        width
-        height
-        src
-        __typename
-      }
       __typename
     }
-    _version
-    _deleted
-    _lastChangedAt
     __typename
   }
 }
@@ -122,21 +92,11 @@ export const createProductBlogs = /* GraphQL */ `mutation CreateProductBlogs(
       title
       handle
       body_html
-      images {
-        id
-        width
-        height
-        src
-        __typename
-      }
       __typename
     }
     id
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     __typename
   }
 }
@@ -159,21 +119,11 @@ export const updateProductBlogs = /* GraphQL */ `mutation UpdateProductBlogs(
       title
       handle
       body_html
-      images {
-        id
-        width
-        height
-        src
-        __typename
-      }
       __typename
     }
     id
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     __typename
   }
 }
@@ -196,21 +146,11 @@ export const deleteProductBlogs = /* GraphQL */ `mutation DeleteProductBlogs(
       title
       handle
       body_html
-      images {
-        id
-        width
-        height
-        src
-        __typename
-      }
       __typename
     }
     id
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     __typename
   }
 }

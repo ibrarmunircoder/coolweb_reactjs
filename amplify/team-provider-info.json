@@ -19,7 +19,7 @@
       "function": {
         "coolweb2c48fe6d8": {
           "deploymentBucketName": "amplify-coolweb2-dev-f6ae7-deployment",
-          "s3Key": "amplify-builds/coolweb2c48fe6d8-4674726e72334f4f3132-build.zip"
+          "s3Key": "amplify-builds/coolweb2c48fe6d8-694b32504a537a496977-build.zip"
         },
         "handleUserListProducts": {
           "deploymentBucketName": "amplify-coolweb2-dev-f6ae7-deployment",

@@ -19,18 +19,8 @@ export const getUserStores = /* GraphQL */ `query GetUserStores($user_id: String
       title
       handle
       body_html
-      images {
-        id
-        width
-        height
-        src
-        __typename
-      }
       __typename
     }
-    _version
-    _deleted
-    _lastChangedAt
     __typename
   }
 }
@@ -59,64 +49,15 @@ export const listUserStores = /* GraphQL */ `query ListUserStores(
       timestamp
       store_name
       store_url
-      products {
-        product_id
-        title
-        handle
-        body_html
-        __typename
-      }
-      _version
-      _deleted
-      _lastChangedAt
       __typename
     }
     nextToken
-    startedAt
     __typename
   }
 }
 ` as GeneratedQuery<
   APITypes.ListUserStoresQueryVariables,
   APITypes.ListUserStoresQuery
->;
-export const syncUserStores = /* GraphQL */ `query SyncUserStores(
-  $filter: ModelUserStoresFilterInput
-  $limit: Int
-  $nextToken: String
-  $lastSync: AWSTimestamp
-) {
-  syncUserStores(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-    lastSync: $lastSync
-  ) {
-    items {
-      user_id
-      timestamp
-      store_name
-      store_url
-      products {
-        product_id
-        title
-        handle
-        body_html
-        __typename
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
-    nextToken
-    startedAt
-    __typename
-  }
-}
-` as GeneratedQuery<
-  APITypes.SyncUserStoresQueryVariables,
-  APITypes.SyncUserStoresQuery
 >;
 export const getUserStoreProducts = /* GraphQL */ `query GetUserStoreProducts(
   $store_name: String!
@@ -137,20 +78,9 @@ export const getUserStoreProducts = /* GraphQL */ `query GetUserStoreProducts(
       timestamp
       store_name
       store_url
-      products {
-        product_id
-        title
-        handle
-        body_html
-        __typename
-      }
-      _version
-      _deleted
-      _lastChangedAt
       __typename
     }
     nextToken
-    startedAt
     __typename
   }
 }
@@ -170,21 +100,11 @@ export const getProductBlogs = /* GraphQL */ `query GetProductBlogs($id: ID!) {
       title
       handle
       body_html
-      images {
-        id
-        width
-        height
-        src
-        __typename
-      }
       __typename
     }
     id
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     __typename
   }
 }
@@ -204,71 +124,18 @@ export const listProductBlogs = /* GraphQL */ `query ListProductBlogs(
       metadata
       store_name
       store_url
-      products {
-        product_id
-        title
-        handle
-        body_html
-        __typename
-      }
       id
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       __typename
     }
     nextToken
-    startedAt
     __typename
   }
 }
 ` as GeneratedQuery<
   APITypes.ListProductBlogsQueryVariables,
   APITypes.ListProductBlogsQuery
->;
-export const syncProductBlogs = /* GraphQL */ `query SyncProductBlogs(
-  $filter: ModelProductBlogsFilterInput
-  $limit: Int
-  $nextToken: String
-  $lastSync: AWSTimestamp
-) {
-  syncProductBlogs(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-    lastSync: $lastSync
-  ) {
-    items {
-      content
-      user_id
-      metadata
-      store_name
-      store_url
-      products {
-        product_id
-        title
-        handle
-        body_html
-        __typename
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      __typename
-    }
-    nextToken
-    startedAt
-    __typename
-  }
-}
-` as GeneratedQuery<
-  APITypes.SyncProductBlogsQueryVariables,
-  APITypes.SyncProductBlogsQuery
 >;
 export const getUserProductsBlogs = /* GraphQL */ `query GetUserProductsBlogs(
   $user_id: String!
@@ -290,23 +157,12 @@ export const getUserProductsBlogs = /* GraphQL */ `query GetUserProductsBlogs(
       metadata
       store_name
       store_url
-      products {
-        product_id
-        title
-        handle
-        body_html
-        __typename
-      }
       id
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       __typename
     }
     nextToken
-    startedAt
     __typename
   }
 }
