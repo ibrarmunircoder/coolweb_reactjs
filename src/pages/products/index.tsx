@@ -16,12 +16,16 @@ import {
   Heading,
   Pagination,
   SearchField,
+  SelectField,
 } from '@aws-amplify/ui-react';
 import React, { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { ProductListing } from './components/ProductListing';
 import { saveProductBlogContent } from '@/services/api/coolweb-graphql/mutations';
 import { CancelGenerateContentPrompt } from './components/CancelGenerateContentPrompt';
+import { imageUrlToBlob } from '@/shared/utils/convertToBase64';
+import { getImageMediaType } from '@/shared/utils/get-image-media-type';
+import { resizeImage } from '@/shared/utils/resize-image';
 
 type UserStoresType = Omit<UserStores, 'products'>;
 
@@ -29,6 +33,7 @@ const Products = () => {
   const user = useAuthUserSelector();
   const [isWaiting, setIsWaiting] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [productsCount, setProductsCount] = useState('1');
   const [isProductsFetching, setIsProductsFetching] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const [stores, setStores] = useState<UserStoresType[]>([]);
@@ -135,10 +140,42 @@ const Products = () => {
     );
   };
 
-  const generateProductsPrompt = () => {
-    const filteredProducts = getSelectedProducts();
+  const generateImagesBlock = async (selectedProducts: Product[]) => {
+    const promises = selectedProducts.map(async (product, index) => {
+      const image = product.images[0];
+      if (image) {
+        const imageBlob = await imageUrlToBlob(image.src);
+        const mediaType = await getImageMediaType(image.src);
+        const resizedFileDataUrl = await resizeImage(
+          imageBlob,
+          1029,
+          1029,
+          mediaType!
+        );
+        const base64 = resizedFileDataUrl.split(',')[1];
+        return [
+          {
+            type: 'text',
+            text: `Image ${index + 1}:`,
+          },
+          {
+            type: 'image',
+            source: {
+              type: 'base64',
+              media_type: mediaType!,
+              data: base64,
+            },
+          },
+        ];
+      }
+    });
+    const imagesBlock = await Promise.all(promises);
+    return imagesBlock.flat();
+  };
+
+  const generateTextBlock = (selectedProducts: Product[]) => {
     let productInfo = '';
-    for (const product of filteredProducts) {
+    for (const product of selectedProducts) {
       const images_html = product.images
         .map((image) => `<img src="${image.src}" style="width: 100%;">`)
         .join('');
@@ -153,7 +190,7 @@ const Products = () => {
     }
 
     const prompt = `
-    Please follow the instructions below to write a blog article for my store ${selectedStore} based on our product information below these instructions.
+    Please follow the below instruction to write a blog article for my store ${selectedStore} based on our product information below these instructions.
 
     Instructions:
     - Generate a blog article with html tags, but not a complete html file with head and body, we only need the html tags wrapped around the content.
@@ -176,6 +213,8 @@ const Products = () => {
     try {
       setIsWaiting(true);
       setModelResponse('');
+      const filteredProducts = getSelectedProducts();
+      const imageBlocks = await generateImagesBlock(filteredProducts);
       const modeId = 'anthropic.claude-3-opus-20240229-v1:0';
       const body = {
         anthropic_version: 'bedrock-2023-05-31',
@@ -184,9 +223,10 @@ const Products = () => {
           {
             role: 'user',
             content: [
+              ...imageBlocks,
               {
                 type: 'text',
-                text: generateProductsPrompt(),
+                text: generateTextBlock(filteredProducts),
               },
             ],
           },
@@ -215,6 +255,7 @@ const Products = () => {
       product.title.toLowerCase().includes(searchTerm.toLocaleLowerCase())
     );
     setProducts(filteredProducts);
+    setCurrentPage(1);
   };
 
   const handleClearProductSearch = () => {
@@ -238,9 +279,9 @@ const Products = () => {
   }
 
   return (
-    <main className="my-14">
+    <main className="py-14">
       <div className="px-3">
-        <div className="pt-8 flex flex-col gap-2 md:flex-row md:justify-between md:items-center">
+        <div className="pt-8 flex flex-col items-start gap-2 md:flex-row md:justify-between md:items-center">
           <div className="flex flex-col">
             <Heading level={3} textAlign="left">
               Products
@@ -256,7 +297,11 @@ const Products = () => {
                 <Badge
                   onClick={handleStoreSelect(store)}
                   style={{ cursor: 'pointer' }}
-                  size="large"
+                  className={`!px-10 !py-3 !inline-block hover:!bg-primary-500 hover:!text-white ${
+                    selectedStore === store.store_name
+                      ? '!bg-primary-500 ! !text-white'
+                      : ''
+                  }`}
                   key={store.timestamp}
                   variation="info"
                 >
@@ -265,23 +310,37 @@ const Products = () => {
               ))}
             </div>
           </div>
-          {selectedProducts.length === 3 && (
+          {selectedProducts.length === +productsCount && (
             <Button
               isLoading={isWaiting}
               onClick={handleGenerateBlogPost}
               variation="primary"
+              className="max-sm:!w-full"
             >
               Generate content
             </Button>
           )}
         </div>
-        <div className="flex w-full justify-end mt-3 mb-8">
+        <div className="flex w-full md:flex-row md:justify-end md:items-center mt-3 mb-8 gap-5">
+          <SelectField
+            placeholder="Select Products"
+            className="!-mt-2"
+            label=""
+            value={productsCount}
+            onChange={(e) => setProductsCount(e.target.value)}
+          >
+            <option value={1}>Select 1 Product</option>
+            <option value={2}>Select 2 Products</option>
+            <option value={3}>Select 3 Products</option>
+          </SelectField>
           <SearchField
             onChange={handleProductSearch}
             onClear={handleClearProductSearch}
-            hasSearchButton
+            hasSearchButton={false}
+            hasSearchIcon
             label="Search"
             placeholder="Search Products"
+            className="max-sm:!w-full"
           />
         </div>
 
