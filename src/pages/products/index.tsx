@@ -147,9 +147,8 @@ const Products = () => {
       productInfo += `Images: ${images_html}<br>`;
       productInfo += `Product Type: ${product.product_type || 'N/A'}<br>`;
       productInfo += `Tags: ${product.tags || 'N/A'}<br>`;
-      productInfo += `Description: ${
-        product.body_html ? product.body_html.trim() : 'N/A'
-      }<br><br>`;
+      productInfo += `Description: ${product.body_html ? product.body_html.trim() : 'N/A'
+        }<br><br>`;
     }
 
     const prompt = `
@@ -165,7 +164,6 @@ const Products = () => {
     - Make sure the image tags have a style added to it of width: 100%;.
     - Make sure the landing page links do not have the main url ${selectedStoreUrl}, and instead start with /products to have the full URL from that point. The main domain part is not needed.
     - The image urls can be the full url.
-    - The blog post must be 1000 words minimum based on the product information: "${productInfo}"
     - Do not include any introductory lines before html. you need to only generate blog post using html elements by wrapping the content. For example, "Here is the blog article with HTML tags based on the provided product information:", do not include such kind of lines while generating blog post.
     `;
 
@@ -242,18 +240,14 @@ const Products = () => {
       <div className="px-3">
         <div className="pt-8 flex flex-col gap-2 md:flex-row md:justify-between md:items-center">
           <div className="flex flex-col">
-            <Heading level={3} textAlign="left">
+            <Heading level={3} textAlign="left" className='font-cd-light'>
               Products
             </Heading>
-            <span className="text-gray-400">
-              Select at least three products to generate blog post
-            </span>
             <div className="my-6 flex items-center gap-6 flex-wrap">
-              <Heading level={6} textAlign="left">
-                Stores:
-              </Heading>
+
               {stores.map((store) => (
                 <Badge
+                  className='font-cd-light'
                   onClick={handleStoreSelect(store)}
                   style={{ cursor: 'pointer' }}
                   size="large"
@@ -271,7 +265,7 @@ const Products = () => {
               onClick={handleGenerateBlogPost}
               variation="primary"
             >
-              Generate content
+              Generate Article
             </Button>
           )}
         </div>

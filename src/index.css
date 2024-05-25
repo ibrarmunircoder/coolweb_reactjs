@@ -2,8 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @layer base {
-  body {
-    font-family: 'Inter', sans-serif;
+  @font-face {
+    font-family: 'cool-medium';
+    font-style: normal;
+    font-display: swap;
+    font-size-adjust: auto;
+    src: url('./assets/fonts/AkzidenzGroteskBE-MdEx.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'cool-light';
+    font-style: normal;
+    font-display: swap;
+    font-size-adjust: auto;
+    src: url('./assets/fonts/AkzidenzGroteskBE-LightEx.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'cool-extended';
+    font-style: normal;
+    font-display: swap;
+    font-size-adjust: auto;
+    src: url('./assets/fonts/AkzidenzGroteskBE-Ex.woff2') format('woff2');
   }
 }
