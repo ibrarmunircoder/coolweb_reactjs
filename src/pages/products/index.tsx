@@ -168,6 +168,7 @@ const Products = () => {
           },
         ];
       }
+      return [];
     });
     const imagesBlock = await Promise.all(promises);
     return imagesBlock.flat();
@@ -317,7 +318,6 @@ const Products = () => {
         </div>
         <div className="flex w-full md:flex-row md:justify-end md:items-center mt-3 mb-8 gap-5">
           <SelectField
-            placeholder="Select Products"
             className="!-mt-2"
             label=""
             value={productsCount}
