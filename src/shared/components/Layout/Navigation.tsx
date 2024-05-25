@@ -1,5 +1,5 @@
 import { useAuthActions } from '@/shared/hooks/useAuthStore';
-import { Button, Image, Text } from '@aws-amplify/ui-react';
+import { Button, Image } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 import { signOut } from 'aws-amplify/auth';
 import { Link, NavLink } from 'react-router-dom';
@@ -16,8 +16,7 @@ export const Navigation = () => {
   return (
     <header className="fixed bg-white top-0 left-0 right-0 w-full h-14 shadow-lg z-50">
       <nav className="flex justify-between items-center w-full h-full">
-
-        <div className='left-nav flex items-center'>
+        <div className="left-nav flex items-center">
           <Link className="flex items-center" to="/">
             <Image
               marginRight=".5em"
@@ -30,11 +29,8 @@ export const Navigation = () => {
               opacity="100%"
             />
 
-
-
-            <div className="font-cd-light text-sm">Blog Writer</div></Link>
-
-
+            <div className="font-cd-light text-sm">Blog Writer</div>
+          </Link>
         </div>
 
         <ul className="hidden sm:flex items-center gap-4 font-cd-light text-sm">
