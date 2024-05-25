@@ -8,6 +8,11 @@ export default {
           500: '#005566',
         },
       },
+      fontFamily: {
+        'cd-med': ['cool-medium', 'sans-serif'],
+        'cd-light': ['cool-light', 'sans-serif'],
+        'cd-extended': ['cool-extended', 'sans-serif'],
+      },
     },
   },
   plugins: [],

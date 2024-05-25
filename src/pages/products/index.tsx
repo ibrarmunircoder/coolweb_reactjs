@@ -283,21 +283,15 @@ const Products = () => {
       <div className="px-3">
         <div className="pt-8 flex flex-col items-start gap-2 md:flex-row md:justify-between md:items-center">
           <div className="flex flex-col">
-            <Heading level={3} textAlign="left">
+            <Heading level={3} textAlign="left" className="font-cd-light">
               Products
             </Heading>
-            <span className="text-gray-400">
-              Select at least three products to generate blog post
-            </span>
             <div className="my-6 flex items-center gap-6 flex-wrap">
-              <Heading level={6} textAlign="left">
-                Stores:
-              </Heading>
               {stores.map((store) => (
                 <Badge
                   onClick={handleStoreSelect(store)}
                   style={{ cursor: 'pointer' }}
-                  className={`!px-10 !py-3 !inline-block hover:!bg-primary-500 hover:!text-white ${
+                  className={`!px-10 !py-3 !inline-block hover:!bg-primary-500 hover:!text-white font-cd-light ${
                     selectedStore === store.store_name
                       ? '!bg-primary-500 ! !text-white'
                       : ''
@@ -317,7 +311,7 @@ const Products = () => {
               variation="primary"
               className="max-sm:!w-full"
             >
-              Generate content
+              Generate Article
             </Button>
           )}
         </div>

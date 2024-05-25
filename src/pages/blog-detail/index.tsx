@@ -6,10 +6,13 @@ import { invokeModelWithStreaming } from '@/shared/utils/llm';
 import { Button, Heading } from '@aws-amplify/ui-react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import './styles.css';
 const BlogDetail = () => {
   const [blog, setBlog] = useState<ProductBlogs | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isWaiting, setIsWaiting] = useState(false);
+  const [isRawHtml, setIsRawHtml] = useState(true); // New state for toggling views
+
   const params = useParams();
   const blogId = params.id;
 
@@ -88,44 +91,58 @@ const BlogDetail = () => {
 
   return (
     <main className="my-14">
-      <div className="px-6 md:px-10 max-w-5xl mx-auto">
-        <div className="flex flex-col gap-5 py-10">
-          <div className=" flex justify-between">
-            <Heading level={4} textAlign="left">
-              Metadata:
-            </Heading>
-            <Button
-              onClick={handleGenerateBlogMetadata}
-              isLoading={isWaiting}
-              variation="primary"
-            >
-              Generate metadat
-            </Button>
-          </div>
-          {blog.metadata &&
-            Object.keys(JSON.parse(blog.metadata)).map((key) => {
-              return (
-                <div className="p-4 bg-gray-100 rounded-md">
-                  <pre className="break-words whitespace-pre-wrap">
-                    <span className="text-lg font-semibold">{key}: </span>
-                    <span>{JSON.parse(blog.metadata as string)[key]}</span>;
-                  </pre>
-                </div>
-              );
-            })}
-        </div>
-        <div className="flex flex-col gap-3">
-          <Heading level={4} textAlign="left">
-            Blog Content:
+    <div className="px-6 md:px-10 max-w-5xl mx-auto">
+      <div className="flex flex-col gap-5 py-10">
+        <div className="flex justify-between">
+          <Heading className='font-cd-light' level={4} textAlign="left">
+            Title & Meta Data
           </Heading>
-          <div className="p-4 bg-gray-100 rounded-md">
+          <Button
+            onClick={handleGenerateBlogMetadata}
+            isLoading={isWaiting}
+            variation="primary"
+          >
+            Generate Title & Meta Data
+          </Button>
+        </div>
+        {blog.metadata &&
+          Object.keys(JSON.parse(blog.metadata)).map((key) => {
+            return (
+              <div className="p-4 bg-gray-100 rounded-md" key={key}>
+                <pre className="break-words whitespace-pre-wrap">
+                  <span className="font-cd-light text-lg font-semibold">{key}: </span>
+                  <span>{JSON.parse(blog.metadata as string)[key]}</span>
+                </pre>
+              </div>
+            );
+          })}
+      </div>
+      <div className="flex flex-col gap-3">
+        <Button
+          onClick={() => setIsRawHtml(!isRawHtml)} // Toggle button
+          variation="primary"
+        >
+          {isRawHtml ? 'View Rendered HTML' : 'View Raw HTML'}
+        </Button>
+        <Heading className="font-cd-light" level={4} textAlign="left">
+          Body:
+        </Heading>
+        <div className="p-4 bg-neutral-200 rounded-md">
+          {isRawHtml ? (
             <pre className="break-words whitespace-pre-wrap">
               {blog.content}
             </pre>
-          </div>
+          ) : (
+            <div
+              className="rendered-html-content" // Add class name for styling
+              dangerouslySetInnerHTML={{ __html: blog.content }}
+            />
+          )}
         </div>
       </div>
-    </main>
+    </div>
+  </main>
+
   );
 };
 
