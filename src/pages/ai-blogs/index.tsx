@@ -45,7 +45,7 @@ const AIBlogs = () => {
 
   if (blogs.length === 0) {
     return (
-      <main className="my-14">
+      <main className="my-14 dark:bg-black">
         <div className="flex justify-center px-3 py-6">
           <Heading className="font-cd-light" level={6} fontWeight={400}>
             No Blogs Found!
@@ -56,26 +56,27 @@ const AIBlogs = () => {
   }
 
   return (
-    <main className="my-14">
-      <div className="px-6 md:px-10 mx-auto">
+
+    <main className="my-14 dark:bg-black">
+      <div className="px-2 md:px-2 mx-auto">
         <div className="flex flex-col py-10">
-          <Heading className="font-cd-light" level={3} textAlign="left">
+          <Heading className="font-cd-light dark:text-white" level={3} textAlign="left">
             Draft Articles
           </Heading>
         </div>
-        <div className="grid sm:grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2">
           {blogs.map((blog) => (
-            <div key={blog.id} className="bg-lime-100 rounded-xl p-4">
+            <div key={blog.id} className="bg-gray-200 dark:bg-neutral-900 rounded-xl p-4">
               <div className="flex items-center gap-3 justify-between mb-5">
                 <div className="flex items-center gap-2">
-                  <Badge className='bg-black text-white font-cd-light'>{blog.store_name}</Badge>
+                  <Badge className='bg-black dark:bg-gradient-to-r from-blue-500 to-indigo-900 text-white text-xs font-cd-light'>{blog.store_name}</Badge>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Button className='font-cd-light hover:bg-lime-200 tracking-wide' size="small">
+                  <Button className='font-cd-light hover:bg-lime-200 dark:bg-black dark:text-white dark:hover:border-lime-200' size="small">
                     <Link to={`/blog/${blog.id}`}>View Article</Link>
                   </Button>
                   <Button
-                    className='font-cd-light tracking-wide'
+                    className='font-cd-light'
                     onClick={handleDeleteBlogPost(blog.id)}
                     isLoading={blog.id === deletingBlogId}
                     size="small"
@@ -85,7 +86,7 @@ const AIBlogs = () => {
                   </Button>
                 </div>
               </div>
-              <pre className="font-cd-light break-words whitespace-pre-wrap">
+              <pre className="font-cd-light break-words whitespace-pre-wrap text-xs dark:text-white">
                 {truncate(blog.content, 300)}
               </pre>
             </div>
@@ -93,6 +94,7 @@ const AIBlogs = () => {
         </div>
       </div>
     </main>
+
   );
 };
 export default AIBlogs;

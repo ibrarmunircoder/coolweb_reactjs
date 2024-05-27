@@ -280,11 +280,11 @@ const Products = () => {
   }
 
   return (
-    <main className="py-14">
+    <main className="py-14 dark:bg-black">
       <div className="px-3">
         <div className="pt-8 flex flex-col items-start gap-2 md:flex-row md:justify-between md:items-center">
           <div className="flex flex-col">
-            <Heading level={3} textAlign="left" className="font-cd-light">
+            <Heading level={3} textAlign="left" className="font-cd-light dark:text-white">
               Products
             </Heading>
             <div className="my-6 flex items-center gap-6 flex-wrap">
@@ -292,13 +292,12 @@ const Products = () => {
                 <Badge
                   onClick={handleStoreSelect(store)}
                   style={{ cursor: 'pointer' }}
-                  className={`!px-10 !py-3 !inline-block hover:!bg-primary-500 hover:!text-white font-cd-light ${
+                  className={`px-8 py-2 bg-gradient-to-r from-blue-500 to-indigo-900 inline-block font-cd-light text-xs text-white${
                     selectedStore === store.store_name
-                      ? '!bg-primary-500 ! !text-white'
+                      ? '!bg-indigo-700 text-xs text-white font-bold'
                       : ''
                   }`}
                   key={store.timestamp}
-                  variation="info"
                 >
                   {store.store_name}
                 </Badge>
@@ -309,8 +308,7 @@ const Products = () => {
             <Button
               isLoading={isWaiting}
               onClick={handleGenerateBlogPost}
-              variation="primary"
-              className="max-sm:!w-full"
+              className="max-sm:!w-full bg-gradient-to-r from-blue-500 to-indigo-900 font-cd-light text-white border-4 border-lime-200"
             >
               Generate Article
             </Button>
@@ -333,8 +331,8 @@ const Products = () => {
             hasSearchButton={false}
             hasSearchIcon
             label="Search"
-            placeholder="Search Products"
-            className="max-sm:!w-full"
+            placeholder="Search"
+            className="max-sm:!w-full dark:bg-gradient-to-r from-blue-500 to-indigo-500"
           />
         </div>
 

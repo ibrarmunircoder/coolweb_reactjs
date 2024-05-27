@@ -3,7 +3,7 @@ import '@aws-amplify/ui-react/styles.css';
 
 const Login = () => {
   return (
-    <main className="flex min-h-screen justify-center items-center">
+    <main className="bg-gradient-to-r from-blue-500 to-indigo-500 flex min-h-screen justify-center items-center">
       <Authenticator>
         {({ user }) => {
           if (user) {

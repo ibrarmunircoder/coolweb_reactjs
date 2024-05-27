@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+.dark{
+  background-color: black;
+}
+.light{
+  background-color: white;
+}
 
 @layer base {
   @font-face {

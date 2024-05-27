@@ -22,14 +22,14 @@ export const ProductListing: React.FC<Props> = ({
       {products.map((product) => (
         <div
           key={product.product_id}
-          className="border-2 rounded-lg bg-white relative select-none"
+          className="bg-neutral-200 dark:bg-neutral-800 relative select-none rounded-xl"
         >
           <img
-            className="w-full shadow"
+            className="w-full rounded-2xl"
             src={product.images[0]?.src || 'https://placehold.co/400x400'}
           />
           <div className="px-3 py-5">
-            <Heading className='font-cd-light' level={6}>{product.title}</Heading>
+            <Heading className='font-cd-light dark:text-white' level={6}>{product.title}</Heading>
           </div>
           <div className="absolute top-5 right-5">
             <CheckboxField

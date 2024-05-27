@@ -3,6 +3,8 @@ import { Button, Image } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 import { signOut } from 'aws-amplify/auth';
 import { Link, NavLink } from 'react-router-dom';
+import ThemeSwitcher from './ThemeSwitcher';
+import ServiceIcon from './ServiceIcon';
 
 export const Navigation = () => {
   const { setUser, setUserSession } = useAuthActions();
@@ -14,22 +16,13 @@ export const Navigation = () => {
   };
 
   return (
-    <header className="fixed bg-white top-0 left-0 right-0 w-full h-14 shadow-lg z-50">
+    <header className="fixed bg-white dark:bg-neutral-900 top-0 left-0 right-0 w-full h-16 shadow-lg z-50">
       <nav className="flex justify-between items-center w-full h-full">
         <div className="left-nav flex items-center">
-          <Link className="flex items-center" to="/">
-            <Image
-              marginRight=".5em"
-              marginLeft=".5em"
-              alt="Blog Writer"
-              src="/bw-logo.jpg"
-              height="auto"
-              width="43px"
-              borderRadius={5}
-              opacity="100%"
-            />
+          <Link className="m-2 flex items-center align-center" to="/">        
 
-            <div className="font-cd-light text-sm">Blog Writer</div>
+          <ServiceIcon gradientFrom="#3B82F6" gradientTo="#312E81" text="Bw" isDarkText={false}/>
+          <div className="text-black dark:text-white font-cd-extended m-2">Blog Writer</div>
           </Link>
         </div>
 
@@ -39,8 +32,8 @@ export const Navigation = () => {
               to="/add-store"
               className={({ isActive }) =>
                 isActive
-                  ? `text-[#047D95] underline underline-offset-8 decoration-2 font-bold`
-                  : 'text-black font-normal'
+                  ? `text-black dark:text-blue-200 underline underline-offset-8 decoration-2 font-bold`
+                  : 'text-black dark:text-blue-200 font-normal'
               }
             >
               Form
@@ -51,8 +44,8 @@ export const Navigation = () => {
               to="/products"
               className={({ isActive }) =>
                 isActive
-                  ? `text-[#047D95] underline underline-offset-8 decoration-2 font-bold`
-                  : 'text-black font-normal'
+                  ? `text-black dark:text-blue-200 underline underline-offset-8 decoration-2 font-bold`
+                  : 'text-black dark:text-blue-200 font-normal'
               }
             >
               Products
@@ -63,14 +56,17 @@ export const Navigation = () => {
               to="/ai-blogs"
               className={({ isActive }) =>
                 isActive
-                  ? `text-[#047D95] underline underline-offset-8 decoration-2 font-bold`
-                  : 'text-black font-normal'
+                  ? `text-black dark:text-blue-200 underline underline-offset-8 decoration-2 font-bold`
+                  : 'text-black dark:text-blue-200 font-normal'
               }
             >
               Drafts
             </NavLink>
           </li>
         </ul>
+
+        <ThemeSwitcher></ThemeSwitcher>
+        
         <Button onClick={handleSignOut} variation="link">
           Sign out
         </Button>

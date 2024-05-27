@@ -46,6 +46,11 @@
 .rendered-html-content ol li {
 	/* List item styles */
 	margin-bottom: 0.5em;
+	font-size: 13px;
+}
+
+.rendered-html-content ul li {
+	list-style:square;
 }
 
 .rendered-html-content img {
