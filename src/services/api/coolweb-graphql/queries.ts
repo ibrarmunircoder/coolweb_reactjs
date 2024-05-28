@@ -1,3 +1,4 @@
+import { ModelSortDirection } from '@/API';
 import {
   customListUserStores,
   customGetUserStoreProducts,
@@ -27,6 +28,7 @@ export const getUserBlogs = async (userId: string) => {
     },
     {
       user_id: userId,
+      sortDirection: ModelSortDirection.DESC,
     }
   );
 

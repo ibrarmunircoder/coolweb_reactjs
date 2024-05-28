@@ -94,9 +94,8 @@ export const createProductBlogs = /* GraphQL */ `mutation CreateProductBlogs(
       body_html
       __typename
     }
+    created_at
     id
-    createdAt
-    updatedAt
     __typename
   }
 }
@@ -121,9 +120,8 @@ export const updateProductBlogs = /* GraphQL */ `mutation UpdateProductBlogs(
       body_html
       __typename
     }
+    created_at
     id
-    createdAt
-    updatedAt
     __typename
   }
 }
@@ -148,9 +146,8 @@ export const deleteProductBlogs = /* GraphQL */ `mutation DeleteProductBlogs(
       body_html
       __typename
     }
+    created_at
     id
-    createdAt
-    updatedAt
     __typename
   }
 }

@@ -1,5 +1,5 @@
 import { useAuthActions } from '@/shared/hooks/useAuthStore';
-import { Button, Image } from '@aws-amplify/ui-react';
+import { Button } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 import { signOut } from 'aws-amplify/auth';
 import { Link, NavLink } from 'react-router-dom';
@@ -19,10 +19,16 @@ export const Navigation = () => {
     <header className="fixed bg-white dark:bg-neutral-900 top-0 left-0 right-0 w-full h-16 shadow-lg z-50">
       <nav className="flex justify-between items-center w-full h-full">
         <div className="left-nav flex items-center">
-          <Link className="m-2 flex items-center align-center" to="/">        
-
-          <ServiceIcon gradientFrom="#3B82F6" gradientTo="#312E81" text="Bw" isDarkText={false}/>
-          <div className="text-black dark:text-white font-cd-extended m-2">Blog Writer</div>
+          <Link className="m-2 flex items-center align-center" to="/">
+            <ServiceIcon
+              gradientFrom="#3B82F6"
+              gradientTo="#312E81"
+              text="Bw"
+              isDarkText={false}
+            />
+            <div className="text-black dark:text-white font-cd-extended m-2">
+              Blog Writer
+            </div>
           </Link>
         </div>
 
@@ -65,8 +71,8 @@ export const Navigation = () => {
           </li>
         </ul>
 
-        <ThemeSwitcher></ThemeSwitcher>
-        
+        <ThemeSwitcher />
+
         <Button onClick={handleSignOut} variation="link">
           Sign out
         </Button>

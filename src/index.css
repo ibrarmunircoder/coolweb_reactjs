@@ -2,10 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-.dark{
+.dark {
   background-color: black;
 }
-.light{
+.light {
   background-color: white;
 }
 
@@ -30,5 +30,11 @@
     font-display: swap;
     font-size-adjust: auto;
     src: url('./assets/fonts/AkzidenzGroteskBE-Ex.woff2') format('woff2');
+  }
+}
+
+@layer utilities {
+  .primary-gradient {
+    @apply bg-gradient-to-r from-blue-500 to-indigo-900;
   }
 }

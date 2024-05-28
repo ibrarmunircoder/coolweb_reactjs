@@ -102,9 +102,8 @@ export const getProductBlogs = /* GraphQL */ `query GetProductBlogs($id: ID!) {
       body_html
       __typename
     }
+    created_at
     id
-    createdAt
-    updatedAt
     __typename
   }
 }
@@ -124,9 +123,8 @@ export const listProductBlogs = /* GraphQL */ `query ListProductBlogs(
       metadata
       store_name
       store_url
+      created_at
       id
-      createdAt
-      updatedAt
       __typename
     }
     nextToken
@@ -139,6 +137,7 @@ export const listProductBlogs = /* GraphQL */ `query ListProductBlogs(
 >;
 export const getUserProductsBlogs = /* GraphQL */ `query GetUserProductsBlogs(
   $user_id: String!
+  $created_at: ModelStringKeyConditionInput
   $sortDirection: ModelSortDirection
   $filter: ModelProductBlogsFilterInput
   $limit: Int
@@ -146,6 +145,7 @@ export const getUserProductsBlogs = /* GraphQL */ `query GetUserProductsBlogs(
 ) {
   getUserProductsBlogs(
     user_id: $user_id
+    created_at: $created_at
     sortDirection: $sortDirection
     filter: $filter
     limit: $limit
@@ -157,9 +157,8 @@ export const getUserProductsBlogs = /* GraphQL */ `query GetUserProductsBlogs(
       metadata
       store_name
       store_url
+      created_at
       id
-      createdAt
-      updatedAt
       __typename
     }
     nextToken

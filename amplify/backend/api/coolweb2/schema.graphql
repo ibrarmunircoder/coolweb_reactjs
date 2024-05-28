@@ -20,7 +20,7 @@ type UserStores
 }
 
 type ProductBlogs
-  @model
+  @model(timestamps: null)
   @auth(
     rules: [
       { allow: public, operations: [read], provider: iam }
@@ -34,11 +34,16 @@ type ProductBlogs
   ) {
   content: String!
   user_id: String!
-    @index(name: "UserProductsBlogs", queryField: "getUserProductsBlogs")
+    @index(
+      name: "UserProductsBlogs"
+      queryField: "getUserProductsBlogs"
+      sortKeyFields: ["created_at"]
+    )
   metadata: String
   store_name: String!
   store_url: String!
   products: [Product!]!
+  created_at: AWSDateTime!
 }
 
 type Product {

@@ -91,58 +91,67 @@ const BlogDetail = () => {
 
   return (
     <main className="my-14">
-    <div className="px-6 md:px-10 max-w-5xl mx-auto">
-      <div className="flex flex-col gap-5 py-10">
-        <div className="flex justify-between">
-          <Heading className='font-cd-light' level={4} textAlign="left">
-            Title & Meta Data
-          </Heading>
+      <div className="px-6 md:px-10 max-w-5xl mx-auto">
+        <div className="flex flex-col gap-5 py-10">
+          <div className="flex justify-between">
+            <Heading
+              className="!font-cd-light dark:!text-white"
+              level={4}
+              textAlign="left"
+            >
+              Title & Meta Data
+            </Heading>
+            <Button
+              onClick={handleGenerateBlogMetadata}
+              isLoading={isWaiting}
+              variation="primary"
+            >
+              Generate Title & Meta Data
+            </Button>
+          </div>
+          {blog.metadata &&
+            Object.keys(JSON.parse(blog.metadata)).map((key) => {
+              return (
+                <div className="p-4 bg-gray-100 rounded-md" key={key}>
+                  <pre className="break-words whitespace-pre-wrap">
+                    <span className="font-cd-light text-lg font-semibold">
+                      {key}:{' '}
+                    </span>
+                    <span>{JSON.parse(blog.metadata as string)[key]}</span>
+                  </pre>
+                </div>
+              );
+            })}
+        </div>
+        <div className="flex flex-col gap-3">
           <Button
-            onClick={handleGenerateBlogMetadata}
-            isLoading={isWaiting}
+            onClick={() => setIsRawHtml(!isRawHtml)} // Toggle button
             variation="primary"
           >
-            Generate Title & Meta Data
+            {isRawHtml ? 'View Rendered HTML' : 'View Raw HTML'}
           </Button>
-        </div>
-        {blog.metadata &&
-          Object.keys(JSON.parse(blog.metadata)).map((key) => {
-            return (
-              <div className="p-4 bg-gray-100 rounded-md" key={key}>
-                <pre className="break-words whitespace-pre-wrap">
-                  <span className="font-cd-light text-lg font-semibold">{key}: </span>
-                  <span>{JSON.parse(blog.metadata as string)[key]}</span>
-                </pre>
-              </div>
-            );
-          })}
-      </div>
-      <div className="flex flex-col gap-3">
-        <Button
-          onClick={() => setIsRawHtml(!isRawHtml)} // Toggle button
-          variation="primary"
-        >
-          {isRawHtml ? 'View Rendered HTML' : 'View Raw HTML'}
-        </Button>
-        <Heading className="font-cd-light" level={4} textAlign="left">
-          Body:
-        </Heading>
-        <div className="p-4 bg-neutral-200 rounded-md">
-          {isRawHtml ? (
-            <pre className="break-words whitespace-pre-wrap">
-              {blog.content}
-            </pre>
-          ) : (
-            <div
-              className="rendered-html-content" // Add class name for styling
-              dangerouslySetInnerHTML={{ __html: blog.content }}
-            />
-          )}
+          <Heading
+            className="!font-cd-light dark:!text-white"
+            level={4}
+            textAlign="left"
+          >
+            Body:
+          </Heading>
+          <div className="p-4 bg-neutral-200 rounded-md">
+            {isRawHtml ? (
+              <pre className="break-words whitespace-pre-wrap">
+                {blog.content}
+              </pre>
+            ) : (
+              <div
+                className="rendered-html-content" // Add class name for styling
+                dangerouslySetInnerHTML={{ __html: blog.content }}
+              />
+            )}
+          </div>
         </div>
       </div>
-    </div>
-  </main>
-
+    </main>
   );
 };
 

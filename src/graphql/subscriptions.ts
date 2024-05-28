@@ -90,9 +90,8 @@ export const onCreateProductBlogs = /* GraphQL */ `subscription OnCreateProductB
       body_html
       __typename
     }
+    created_at
     id
-    createdAt
-    updatedAt
     __typename
   }
 }
@@ -116,9 +115,8 @@ export const onUpdateProductBlogs = /* GraphQL */ `subscription OnUpdateProductB
       body_html
       __typename
     }
+    created_at
     id
-    createdAt
-    updatedAt
     __typename
   }
 }
@@ -142,9 +140,8 @@ export const onDeleteProductBlogs = /* GraphQL */ `subscription OnDeleteProductB
       body_html
       __typename
     }
+    created_at
     id
-    createdAt
-    updatedAt
     __typename
   }
 }

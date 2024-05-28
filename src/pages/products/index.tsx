@@ -26,6 +26,7 @@ import { CancelGenerateContentPrompt } from './components/CancelGenerateContentP
 import { imageUrlToBlob } from '@/shared/utils/convertToBase64';
 import { getImageMediaType } from '@/shared/utils/get-image-media-type';
 import { resizeImage } from '@/shared/utils/resize-image';
+import { v4 as uuidV4 } from 'uuid';
 
 type UserStoresType = Omit<UserStores, 'products'>;
 
@@ -236,11 +237,13 @@ const Products = () => {
 
       const response = await invokeModelWithStreaming(body, modeId);
       await saveProductBlogContent({
+        id: uuidV4(),
         content: response,
         products: getSelectedProducts(),
         store_name: selectedStore,
         store_url: selectedStoreUrl,
         user_id: user?.userId as string,
+        created_at: new Date().toISOString(),
       });
       setModelResponse(response);
     } catch (error) {
@@ -271,7 +274,11 @@ const Products = () => {
     return (
       <main className="my-14">
         <div className="flex justify-center px-3 py-6">
-          <Heading level={6} fontWeight={400}>
+          <Heading
+            className="!font-cd-light dark:!text-white"
+            level={6}
+            fontWeight={400}
+          >
             No Stores Found!
           </Heading>
         </div>
@@ -284,7 +291,11 @@ const Products = () => {
       <div className="px-3">
         <div className="pt-8 flex flex-col items-start gap-2 md:flex-row md:justify-between md:items-center">
           <div className="flex flex-col">
-            <Heading level={3} textAlign="left" className="font-cd-light dark:text-white">
+            <Heading
+              level={3}
+              textAlign="left"
+              className="font-cd-light dark:text-white"
+            >
               Products
             </Heading>
             <div className="my-6 flex items-center gap-6 flex-wrap">

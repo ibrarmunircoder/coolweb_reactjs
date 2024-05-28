@@ -121,6 +121,7 @@ export type CreateProductBlogsInput = {
   store_name: string,
   store_url: string,
   products: Array< ProductInput >,
+  created_at: string,
   id?: string | null,
 };
 
@@ -130,6 +131,7 @@ export type ModelProductBlogsConditionInput = {
   metadata?: ModelStringInput | null,
   store_name?: ModelStringInput | null,
   store_url?: ModelStringInput | null,
+  created_at?: ModelStringInput | null,
   and?: Array< ModelProductBlogsConditionInput | null > | null,
   or?: Array< ModelProductBlogsConditionInput | null > | null,
   not?: ModelProductBlogsConditionInput | null,
@@ -145,9 +147,8 @@ export type ProductBlogs = {
   store_name: string,
   store_url: string,
   products:  Array<Product >,
+  created_at: string,
   id: string,
-  createdAt: string,
-  updatedAt: string,
 };
 
 export type UpdateProductBlogsInput = {
@@ -157,6 +158,7 @@ export type UpdateProductBlogsInput = {
   store_name?: string | null,
   store_url?: string | null,
   products?: Array< ProductInput > | null,
+  created_at?: string | null,
   id: string,
 };
 
@@ -219,9 +221,8 @@ export type ModelProductBlogsFilterInput = {
   metadata?: ModelStringInput | null,
   store_name?: ModelStringInput | null,
   store_url?: ModelStringInput | null,
+  created_at?: ModelStringInput | null,
   id?: ModelIDInput | null,
-  createdAt?: ModelStringInput | null,
-  updatedAt?: ModelStringInput | null,
   and?: Array< ModelProductBlogsFilterInput | null > | null,
   or?: Array< ModelProductBlogsFilterInput | null > | null,
   not?: ModelProductBlogsFilterInput | null,
@@ -279,9 +280,8 @@ export type ModelSubscriptionProductBlogsFilterInput = {
   metadata?: ModelSubscriptionStringInput | null,
   store_name?: ModelSubscriptionStringInput | null,
   store_url?: ModelSubscriptionStringInput | null,
+  created_at?: ModelSubscriptionStringInput | null,
   id?: ModelSubscriptionIDInput | null,
-  createdAt?: ModelSubscriptionStringInput | null,
-  updatedAt?: ModelSubscriptionStringInput | null,
   and?: Array< ModelSubscriptionProductBlogsFilterInput | null > | null,
   or?: Array< ModelSubscriptionProductBlogsFilterInput | null > | null,
 };
@@ -372,9 +372,8 @@ export type CreateProductBlogsMutation = {
       handle: string,
       body_html?: string | null,
     } >,
+    created_at: string,
     id: string,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -398,9 +397,8 @@ export type UpdateProductBlogsMutation = {
       handle: string,
       body_html?: string | null,
     } >,
+    created_at: string,
     id: string,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -424,9 +422,8 @@ export type DeleteProductBlogsMutation = {
       handle: string,
       body_html?: string | null,
     } >,
+    created_at: string,
     id: string,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -516,9 +513,8 @@ export type GetProductBlogsQuery = {
       handle: string,
       body_html?: string | null,
     } >,
+    created_at: string,
     id: string,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -538,9 +534,8 @@ export type ListProductBlogsQuery = {
       metadata?: string | null,
       store_name: string,
       store_url: string,
+      created_at: string,
       id: string,
-      createdAt: string,
-      updatedAt: string,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -548,6 +543,7 @@ export type ListProductBlogsQuery = {
 
 export type GetUserProductsBlogsQueryVariables = {
   user_id: string,
+  created_at?: ModelStringKeyConditionInput | null,
   sortDirection?: ModelSortDirection | null,
   filter?: ModelProductBlogsFilterInput | null,
   limit?: number | null,
@@ -564,9 +560,8 @@ export type GetUserProductsBlogsQuery = {
       metadata?: string | null,
       store_name: string,
       store_url: string,
+      created_at: string,
       id: string,
-      createdAt: string,
-      updatedAt: string,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -654,9 +649,8 @@ export type OnCreateProductBlogsSubscription = {
       handle: string,
       body_html?: string | null,
     } >,
+    created_at: string,
     id: string,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -679,9 +673,8 @@ export type OnUpdateProductBlogsSubscription = {
       handle: string,
       body_html?: string | null,
     } >,
+    created_at: string,
     id: string,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -704,8 +697,7 @@ export type OnDeleteProductBlogsSubscription = {
       handle: string,
       body_html?: string | null,
     } >,
+    created_at: string,
     id: string,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
