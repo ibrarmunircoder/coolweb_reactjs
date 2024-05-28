@@ -28,10 +28,6 @@ const AIBlogs = () => {
       });
   }, [user]);
 
-  if (isLoading) {
-    return <Spinner />;
-  }
-
   const handleDeleteBlogPost = (id: string) => async () => {
     try {
       setDeletingBlogId(id);
@@ -43,6 +39,10 @@ const AIBlogs = () => {
       setDeletingBlogId('');
     }
   };
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   if (blogs.length === 0) {
     return (
