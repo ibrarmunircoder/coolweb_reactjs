@@ -24,7 +24,7 @@ export const BlogMetadata = ({ metadata, blogId }: Props) => {
         Object.keys(JSON.parse(metadata!)).map((key) => {
           return (
             <p className="100 rounded-md" key={key}>
-              <span className="font-cd-med capitalize underline underline-offset-4 mr-1">
+              <span className="font-cd-med font-medium capitalize underline underline-offset-4 mr-1">
                 {key}:{' '}
               </span>
               <span className="">{JSON.parse(metadata as string)[key]}</span>
