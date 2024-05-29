@@ -2,34 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-.dark {
-  background-color: black;
-}
-.light {
-  background-color: white;
-}
-
 @layer base {
   @font-face {
     font-family: 'cool-medium';
     font-style: normal;
     font-display: swap;
     font-size-adjust: auto;
-    src: url('./assets/fonts/AkzidenzGroteskBE-MdEx.woff2') format('woff2');
+    src: local('cool-medium'),
+      url('assets/fonts/AkzidenzGroteskBE-MdEx.woff2') format('woff2');
   }
   @font-face {
     font-family: 'cool-light';
     font-style: normal;
     font-display: swap;
     font-size-adjust: auto;
-    src: url('./assets/fonts/AkzidenzGroteskBE-LightEx.woff2') format('woff2');
+    src: local('cool-light'),
+      url('assets/fonts/AkzidenzGroteskBE-LightEx.woff2') format('woff2');
   }
   @font-face {
     font-family: 'cool-extended';
     font-style: normal;
     font-display: swap;
     font-size-adjust: auto;
-    src: url('./assets/fonts/AkzidenzGroteskBE-Ex.woff2') format('woff2');
+    src: local('cool-extended'),
+      url('assets/fonts/AkzidenzGroteskBE-Ex.woff2') format('woff2');
   }
 }
 
@@ -37,4 +33,11 @@
   .primary-gradient {
     @apply bg-gradient-to-r from-blue-500 to-indigo-900;
   }
+}
+
+.dark {
+  background-color: black;
+}
+.light {
+  background-color: white;
 }

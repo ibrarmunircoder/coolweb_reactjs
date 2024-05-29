@@ -1,10 +1,9 @@
+import { UserStores } from '@/API';
+import { Product } from '@/types';
 import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
-interface Store {
-  store_name: string;
-  store_url: string;
-  timestamp: string;
-}
+type UserStoresType = Omit<UserStores, 'products'>;
 
 interface StoreAvatarProps {
   storeName: string;
@@ -16,7 +15,7 @@ const StoreAvatar: React.FC<StoreAvatarProps> = ({ storeName, onClick }) => {
     return name
       .split(' ')
       .slice(0, 2)
-      .map(word => word.charAt(0))
+      .map((word) => word.charAt(0))
       .join('');
   };
 
@@ -32,12 +31,10 @@ const StoreAvatar: React.FC<StoreAvatarProps> = ({ storeName, onClick }) => {
 };
 
 interface StoreSelectorProps {
-  stores: Store[];
+  stores: UserStoresType[];
   setModelResponse: React.Dispatch<React.SetStateAction<string>>;
-  setProducts: React.Dispatch<React.SetStateAction<any[]>>;
-  setSelectedProducts: React.Dispatch<React.SetStateAction<any[]>>;
-  setSearchParams: (params: { store: string; store_url: string }) => void;
-  searchParams: URLSearchParams;
+  setProducts: React.Dispatch<React.SetStateAction<Product[]>>;
+  setSelectedProducts: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 const StoreSelector: React.FC<StoreSelectorProps> = ({
@@ -45,10 +42,9 @@ const StoreSelector: React.FC<StoreSelectorProps> = ({
   setModelResponse,
   setProducts,
   setSelectedProducts,
-  setSearchParams,
-  searchParams
 }) => {
   const [selectedStore, setSelectedStore] = useState<string | null>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
   const [isListVisible, setIsListVisible] = useState(false);
 
   useEffect(() => {
@@ -58,7 +54,7 @@ const StoreSelector: React.FC<StoreSelectorProps> = ({
     }
   }, [searchParams]);
 
-  const handleStoreSelect = (store: Store) => () => {
+  const handleStoreSelect = (store: UserStoresType) => () => {
     if (selectedStore !== store.store_name) {
       setModelResponse('');
       setProducts([]);
@@ -79,23 +75,23 @@ const StoreSelector: React.FC<StoreSelectorProps> = ({
         onClick={() => setIsListVisible(!isListVisible)}
       />
       {isListVisible && (
-        <div className='rounded-2xl bg-gradient-to-r from-blue-500 to-indigo-900 p-4'>
-        <ul>
-          {stores.map((store) => (
-            <li
-              onClick={handleStoreSelect(store)}
-              style={{ cursor: 'pointer' }}
-              className={`${
-                selectedStore === store.store_name
-                  ? '!bg-indigo-700 text-xs text-white font-bold p-4 rounded-lg font-cd-light hover:bg-gray-300'
-                  : '!bg-red-900 text-xs text-white p-4 rounded-lg font-cd-light hover:bg-gray-300'
-              }`}
-              key={store.timestamp}
-            >
-              {store.store_name}
-            </li>
-          ))}
-        </ul>
+        <div className="rounded-2xl bg-gradient-to-r from-blue-500 to-indigo-900 p-4">
+          <ul>
+            {stores.map((store) => (
+              <li
+                onClick={handleStoreSelect(store)}
+                style={{ cursor: 'pointer' }}
+                className={`${
+                  selectedStore === store.store_name
+                    ? '!bg-indigo-700 text-xs text-white font-bold p-4 rounded-lg font-cd-light hover:bg-gray-300'
+                    : '!bg-red-900 text-xs text-white p-4 rounded-lg font-cd-light hover:bg-gray-300'
+                }`}
+                key={store.timestamp}
+              >
+                {store.store_name}
+              </li>
+            ))}
+          </ul>
         </div>
       )}
     </div>
