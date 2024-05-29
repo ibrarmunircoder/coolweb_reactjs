@@ -11,7 +11,6 @@ import { useAuthUserSelector } from "@/shared/hooks/useAuthStore";
 import { invokeModelWithStreaming } from "@/shared/utils/llm";
 import { Product } from "@/types";
 import {
-  Badge,
   Button,
   Heading,
   Pagination,
