@@ -1,15 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { UserStores } from '@/API';
+import { UserStores } from "@/API";
 import {
   fetchUserStoreProducts,
   fetchUserStores,
-} from '@/services/api/coolweb-graphql/queries';
-import { Spinner, TypeWriter } from '@/shared/components';
-import { useAuthUserSelector } from '@/shared/hooks/useAuthStore';
-import { invokeModelWithStreaming } from '@/shared/utils/llm';
-import { Product } from '@/types';
+} from "@/services/api/coolweb-graphql/queries";
+import { Spinner, TypeWriter } from "@/shared/components";
+import { useAuthUserSelector } from "@/shared/hooks/useAuthStore";
+import { invokeModelWithStreaming } from "@/shared/utils/llm";
+import { Product } from "@/types";
 import {
   Badge,
   Button,
@@ -17,28 +17,29 @@ import {
   Pagination,
   SearchField,
   SelectField,
-} from '@aws-amplify/ui-react';
-import React, { useEffect, useRef, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { ProductListing } from './components/ProductListing';
-import { saveProductBlogContent } from '@/services/api/coolweb-graphql/mutations';
-import { CancelGenerateContentPrompt } from './components/CancelGenerateContentPrompt';
-import { imageUrlToBlob } from '@/shared/utils/convertToBase64';
-import { getImageMediaType } from '@/shared/utils/get-image-media-type';
-import { resizeImage } from '@/shared/utils/resize-image';
-import { v4 as uuidV4 } from 'uuid';
+} from "@aws-amplify/ui-react";
+import React, { useEffect, useRef, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import { ProductListing } from "./components/ProductListing";
+import { saveProductBlogContent } from "@/services/api/coolweb-graphql/mutations";
+import { CancelGenerateContentPrompt } from "./components/CancelGenerateContentPrompt";
+import { imageUrlToBlob } from "@/shared/utils/convertToBase64";
+import { getImageMediaType } from "@/shared/utils/get-image-media-type";
+import { resizeImage } from "@/shared/utils/resize-image";
+import { v4 as uuidV4 } from "uuid";
+import StoreSelector from "./components/StoreAvatar";
 
-type UserStoresType = Omit<UserStores, 'products'>;
+type UserStoresType = Omit<UserStores, "products">;
 
 const Products = () => {
   const user = useAuthUserSelector();
   const [isWaiting, setIsWaiting] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [productsCount, setProductsCount] = useState('1');
+  const [productsCount, setProductsCount] = useState("1");
   const [isProductsFetching, setIsProductsFetching] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const [stores, setStores] = useState<UserStoresType[]>([]);
-  const [modelResponse, setModelResponse] = useState('');
+  const [modelResponse, setModelResponse] = useState("");
   const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -49,8 +50,8 @@ const Products = () => {
   const lastIndex = currentPage * recordsPerPage;
   const firstIndex = lastIndex - recordsPerPage;
   const chunk = products.slice(firstIndex, lastIndex);
-  const selectedStore = searchParams.get('store') || '';
-  const selectedStoreUrl = searchParams.get('store') || '';
+  const selectedStore = searchParams.get("store") || "";
+  const selectedStoreUrl = searchParams.get("store") || "";
 
   useEffect(() => {
     if (selectedStore) {
@@ -105,18 +106,6 @@ const Products = () => {
     setCurrentPage(newPageIndex as number);
   };
 
-  const handleStoreSelect = (store: UserStoresType) => () => {
-    if (selectedStore !== store.store_name) {
-      setModelResponse('');
-      setProducts([]);
-      setSelectedProducts([]);
-      setSearchParams({
-        store: store.store_name,
-        store_url: store.store_url,
-      });
-    }
-  };
-
   const handleProductSelect = (id: string) => {
     const selectedIndex = selectedProducts.indexOf(id);
     let newSelected: string[] = [];
@@ -153,16 +142,16 @@ const Products = () => {
           1029,
           mediaType!
         );
-        const base64 = resizedFileDataUrl.split(',')[1];
+        const base64 = resizedFileDataUrl.split(",")[1];
         return [
           {
-            type: 'text',
+            type: "text",
             text: `Image ${index + 1}:`,
           },
           {
-            type: 'image',
+            type: "image",
             source: {
-              type: 'base64',
+              type: "base64",
               media_type: mediaType!,
               data: base64,
             },
@@ -176,18 +165,18 @@ const Products = () => {
   };
 
   const generateTextBlock = (selectedProducts: Product[]) => {
-    let productInfo = '';
+    let productInfo = "";
     for (const product of selectedProducts) {
       const images_html = product.images
         .map((image) => `<img src="${image.src}" style="width: 100%;">`)
-        .join('');
-      productInfo += `Title: ${product.title || 'N/A'}<br>`;
-      productInfo += `Handle: ${product.handle || 'N/A'}<br>`;
+        .join("");
+      productInfo += `Title: ${product.title || "N/A"}<br>`;
+      productInfo += `Handle: ${product.handle || "N/A"}<br>`;
       productInfo += `Images: ${images_html}<br>`;
-      productInfo += `Product Type: ${product.product_type || 'N/A'}<br>`;
-      productInfo += `Tags: ${product.tags || 'N/A'}<br>`;
+      productInfo += `Product Type: ${product.product_type || "N/A"}<br>`;
+      productInfo += `Tags: ${product.tags || "N/A"}<br>`;
       productInfo += `Description: ${
-        product.body_html ? product.body_html.trim() : 'N/A'
+        product.body_html ? product.body_html.trim() : "N/A"
       }<br><br>`;
     }
 
@@ -214,20 +203,20 @@ const Products = () => {
   const handleGenerateBlogPost = async () => {
     try {
       setIsWaiting(true);
-      setModelResponse('');
+      setModelResponse("");
       const filteredProducts = getSelectedProducts();
       const imageBlocks = await generateImagesBlock(filteredProducts);
-      const modeId = 'anthropic.claude-3-opus-20240229-v1:0';
+      const modeId = "anthropic.claude-3-opus-20240229-v1:0";
       const body = {
-        anthropic_version: 'bedrock-2023-05-31',
+        anthropic_version: "bedrock-2023-05-31",
         max_tokens: 4000,
         messages: [
           {
-            role: 'user',
+            role: "user",
             content: [
               ...imageBlocks,
               {
-                type: 'text',
+                type: "text",
                 text: generateTextBlock(filteredProducts),
               },
             ],
@@ -299,20 +288,14 @@ const Products = () => {
               Products
             </Heading>
             <div className="my-6 flex items-center gap-6 flex-wrap">
-              {stores.map((store) => (
-                <Badge
-                  onClick={handleStoreSelect(store)}
-                  style={{ cursor: 'pointer' }}
-                  className={`px-8 py-2 bg-gradient-to-r from-blue-500 to-indigo-900 inline-block font-cd-light text-xs text-white${
-                    selectedStore === store.store_name
-                      ? '!bg-indigo-700 text-xs text-white font-bold'
-                      : ''
-                  }`}
-                  key={store.timestamp}
-                >
-                  {store.store_name}
-                </Badge>
-              ))}
+            <StoreSelector
+                stores={stores}
+                setModelResponse={setModelResponse}
+                setProducts={setProducts}
+                setSelectedProducts={setSelectedProducts}
+                setSearchParams={setSearchParams}
+                searchParams={searchParams}
+              />
             </div>
           </div>
           {selectedProducts.length === +productsCount && (
