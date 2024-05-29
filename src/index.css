@@ -9,7 +9,7 @@
     font-display: swap;
     font-size-adjust: auto;
     src: local('cool-medium'),
-      url('assets/fonts/AkzidenzGroteskBE-MdEx.woff2') format('woff2');
+      url('./assets/fonts/AkzidenzGroteskBE-MdEx.woff2?') format('woff2');
   }
   @font-face {
     font-family: 'cool-light';
@@ -17,7 +17,7 @@
     font-display: swap;
     font-size-adjust: auto;
     src: local('cool-light'),
-      url('assets/fonts/AkzidenzGroteskBE-LightEx.woff2') format('woff2');
+      url('./assets/fonts/AkzidenzGroteskBE-LightEx.woff2?') format('woff2');
   }
   @font-face {
     font-family: 'cool-extended';
@@ -25,7 +25,7 @@
     font-display: swap;
     font-size-adjust: auto;
     src: local('cool-extended'),
-      url('assets/fonts/AkzidenzGroteskBE-Ex.woff2') format('woff2');
+      url('./assets/fonts/AkzidenzGroteskBE-Ex.woff2?') format('woff2');
   }
 }
 
