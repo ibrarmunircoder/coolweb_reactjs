@@ -79,15 +79,16 @@ const StoreSelector: React.FC<StoreSelectorProps> = ({
         onClick={() => setIsListVisible(!isListVisible)}
       />
       {isListVisible && (
-        <ul className='rounded-md'>
+        <div className='rounded-2xl bg-gradient-to-r from-blue-500 to-indigo-900 p-4'>
+        <ul>
           {stores.map((store) => (
             <li
               onClick={handleStoreSelect(store)}
               style={{ cursor: 'pointer' }}
               className={`${
                 selectedStore === store.store_name
-                  ? '!bg-indigo-700 text-xs text-white font-bold p-4'
-                  : '!bg-red-900 text-xs text-white p-4'
+                  ? '!bg-indigo-700 text-xs text-white font-bold p-4 rounded-lg font-cd-light hover:bg-gray-300'
+                  : '!bg-red-900 text-xs text-white p-4 rounded-lg font-cd-light hover:bg-gray-300'
               }`}
               key={store.timestamp}
             >
@@ -95,6 +96,7 @@ const StoreSelector: React.FC<StoreSelectorProps> = ({
             </li>
           ))}
         </ul>
+        </div>
       )}
     </div>
   );
