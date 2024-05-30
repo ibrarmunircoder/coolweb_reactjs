@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 type Props = {
   metadata?: string | null;
@@ -8,29 +8,30 @@ type Props = {
 export const BlogMetadata = ({ metadata, blogId }: Props) => {
   if (!metadata) {
     return (
-      <div className="grow flex justify-center items-center">
+      <div className="">
         <Link
-          className="text-primary-500 text-sm font-semibold underline underline-offset-4"
+          className="text-black dark:text-white text-sm"
           to={`/blog/${blogId}`}
         >
-          Generate metadata
+          Untitled
         </Link>
       </div>
     );
   }
+
+  const parsedMetadata = JSON.parse(metadata as string);
+  const blogTitle = parsedMetadata["blogTitle"];
+
   return (
-    <div className="flex flex-col gap-2 text-black dark:text-white text-sm font-cd-light">
-      {metadata &&
-        Object.keys(JSON.parse(metadata!)).map((key) => {
-          return (
-            <p className="100 rounded-md" key={key}>
-              <span className="font-cd-med font-medium capitalize underline underline-offset-4 mr-1">
-                {key}:{' '}
-              </span>
-              <span className="">{JSON.parse(metadata as string)[key]}</span>
-            </p>
-          );
-        })}
+    <div className="text-black dark:text-white text-sm font-cd-light">
+      {blogTitle && (
+        <Link
+          className="text-black dark:text-white text-sm"
+          to={`/blog/${blogId}`}
+        >
+          {blogTitle} 
+        </Link>
+      )}
     </div>
   );
 };

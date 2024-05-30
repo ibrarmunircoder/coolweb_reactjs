@@ -2,6 +2,8 @@ import { UserStores } from '@/API';
 import { Product } from '@/types';
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import './StoreAvatar.css'
+
 
 type UserStoresType = Omit<UserStores, 'products'>;
 
@@ -21,7 +23,7 @@ const StoreAvatar: React.FC<StoreAvatarProps> = ({ storeName, onClick }) => {
 
   return (
     <div
-      className="flex items-center justify-center size-16 rounded-full bg-gradient-to-r from-blue-500 to-indigo-900 font-cd-light text-white cursor-pointer"
+      className="flex items-center justify-center size-12 rounded-xl bg-gradient-to-r from-blue-500 to-indigo-900 font-cd-light text-sm text-white cursor-pointer"
       title={storeName}
       onClick={onClick}
     >
@@ -75,7 +77,7 @@ const StoreSelector: React.FC<StoreSelectorProps> = ({
         onClick={() => setIsListVisible(!isListVisible)}
       />
       {isListVisible && (
-        <div className="rounded-2xl bg-gradient-to-r from-blue-500 to-indigo-900 p-4">
+        <div className="rounded-2xl bg-gradient-to-r from-blue-500 to-indigo-900 p-2 store-list">
           <ul>
             {stores.map((store) => (
               <li
@@ -83,8 +85,8 @@ const StoreSelector: React.FC<StoreSelectorProps> = ({
                 style={{ cursor: 'pointer' }}
                 className={`${
                   selectedStore === store.store_name
-                    ? '!bg-indigo-700 text-xs text-white font-bold p-4 rounded-lg font-cd-light hover:bg-gray-300'
-                    : '!bg-red-900 text-xs text-white p-4 rounded-lg font-cd-light hover:bg-gray-300'
+                    ? 'text-xs text-white p-4 rounded-lg font-cd-light bg-black'
+                    : 'text-xs text-white p-4 rounded-lg font-cd-light'
                 }`}
                 key={store.timestamp}
               >
