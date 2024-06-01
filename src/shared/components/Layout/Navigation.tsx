@@ -70,7 +70,6 @@ export const Navigation = () => {
             </NavLink>
           </li>
         </ul>
-
         <ThemeSwitcher />
 
         <Button onClick={handleSignOut} variation="link">

@@ -2,15 +2,18 @@ import { ProductBlogs } from "@/API";
 import { getUserBlogs } from "@/services/api/coolweb-graphql/queries";
 import { Spinner } from "@/shared/components";
 import { useAuthUserSelector } from "@/shared/hooks/useAuthStore";
-import { Heading } from "@aws-amplify/ui-react";
+
 import { useEffect, useState } from "react";
-// import { Link } from "react-router-dom";
+
 import { BlogMetadata } from "./components/BlogMetadata";
+import { Heading } from "@aws-amplify/ui-react";
 
 const AIBlogs = () => {
   const user = useAuthUserSelector();
   const [isLoading, setIsLoading] = useState(true);
   const [blogs, setBlogs] = useState<ProductBlogs[]>([]);
+
+  
 
   useEffect(() => {
     getUserBlogs(user!.userId)
@@ -25,7 +28,7 @@ const AIBlogs = () => {
       });
   }, [user]);
 
- 
+
 
   const extractFirstImageUrl = (content: string) => {
     const imgTagRegex = /<img[^>]+src="([^">]+)"/;
@@ -71,29 +74,38 @@ const AIBlogs = () => {
             return (
               <div
                 key={blog.id}
-                className="bg-gray-200 dark:bg-neutral-900 rounded-xl gap-5 relative flex items-center"
+                className="bg-gray-200 dark:bg-neutral-900 rounded-xl gap-5 relative flex items-center dark:hover:bg-blue-400"
               >
                 <span className="font-cd-light absolute top-2 right-2 inline-flex items-center rounded-md bg-gradient-to-r from-blue-500 to-indigo-900 px-2 py-1 text-xs font-medium text-white ring-1 ring-inset ring-gray-500/10">
                   {blog.store_name}
                 </span>
 
                 <div className="flex place-items-center flex-row">
+
                 {imageUrl && (
                   <img
                     src={imageUrl}
-                    alt="Blog"
-                    className="rounded-xl m-2"
-                    style={{ maxWidth: '120px', width: '100%' }}
+                    alt="Featured Image"
+                    className="rounded-xl m-2 max-w-32 md:max-w-64"
+                    style={{ width: '100%' }}
                   />
                 )}
+                <div className="grid">
                 <BlogMetadata metadata={blog.metadata} blogId={blog.id} />
+
+
+                </div>
                 </div>
                 
               </div>
+              
             );
           })}
         </div>
       </div>
+
+
+      
     </main>
   );
 };

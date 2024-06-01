@@ -47,7 +47,7 @@ const BlogDetail = () => {
   const generateProductsPrompt = () => {
     const prompt = `
     Use the ${blog.content} to create a unique blog title based on the content, a meta description (maximum 320 characters), and a blog excerpt (less than 200 characters)
-    . Returns a response in json object without any text or description before json.`;
+    . Returns a response in json object without any text or description before json. (don't use words: Elevate, Embrace, Unleash, Ignite or any hyperbolic verb or adjectives) based on the content, a metaDescription (maximum 320 characters), and a blogExcerpt (less than 200 characters). Return the response as a JSON object without any text or description before the JSON. Use blogTitle, metaDescription and blogExcerpt as the keys.`;
     return prompt;
   };
 
